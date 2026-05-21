@@ -1,0 +1,69 @@
+using UnityEngine;
+using UnityEngine.InputSystem;
+
+public class PlayerController : MonoBehaviour
+{
+    CharacterController _characterController;
+    Vector2 _moveInput;
+    Vector2 _lookInput;
+    float _verticalVelocity;
+    [SerializeField] float _moveSpeed = 5f;
+    [SerializeField] float _jumpPower = 8f;
+    [SerializeField] float _gravity = -9.8f;
+    [SerializeField] Transform _cameraTransform;
+    float cameraPitch = 0f;
+
+    private void Start()
+    {
+        _characterController = GetComponent<CharacterController>();
+        //マウスカーソルを画面中に固定
+        Cursor.lockState = CursorLockMode.Locked;
+    }
+
+    private void Update()
+    {
+        Move();
+        if (Keyboard.current.wKey.isPressed)
+        {
+            Debug.Log("W押されてる");
+        }
+    }
+
+    public void OnMove(InputAction.CallbackContext context)
+    {
+        _moveInput = context.ReadValue<Vector2>();
+    }
+
+    public void OnLook(InputAction.CallbackContext context)
+    {
+        _lookInput = context.ReadValue<Vector2>();
+    }
+
+    public void OnJump(InputAction.CallbackContext context)
+    {
+        if (context.performed && _characterController.isGrounded)
+        {
+            _verticalVelocity = _jumpPower;
+        }
+    }
+
+    void Move()
+    {
+        Vector3 forward = _cameraTransform.forward;
+        Vector3 right = _cameraTransform.right;
+        forward.y = 0f;
+        right.y = 0f;
+        forward.Normalize();
+        right.Normalize();
+        Vector3 move =forward * _moveInput.y + right * _moveInput.x;
+        _characterController.Move(move * _moveSpeed * Time.deltaTime);
+
+        if(_characterController.isGrounded && _verticalVelocity < 0)
+        {
+            _verticalVelocity = -2f;
+        }
+
+        _verticalVelocity += _gravity * Time.deltaTime;
+        _characterController.Move(Vector3.up * _verticalVelocity * Time.deltaTime);
+    }
+}
