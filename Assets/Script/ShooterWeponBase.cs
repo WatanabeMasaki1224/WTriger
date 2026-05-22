@@ -13,11 +13,24 @@ public class ShooterWeponBase : MonoBehaviour
     [SerializeField] protected int _cubeCount = 4;
     [SerializeField] protected float _cubeDelay = 0.3f;
     [SerializeField] protected float _cubeSpread = 0.3f;
-    protected bool isShooting;
+    [SerializeField] protected float _trionCost = 10f;
+
+    protected PlayerStatus _playerStatus;
+    protected bool _isShooting;
+
+    protected virtual void Start()
+    {
+        _playerStatus = GetComponent<PlayerStatus>();
+    }
 
     public void OnFire(InputAction.CallbackContext context)
     {
-        if (isShooting)
+        if (_isShooting)
+        {
+            return;
+        }
+
+        if (!_playerStatus.ConsumeTrion(_trionCost))
         {
             return;
         }
@@ -27,7 +40,7 @@ public class ShooterWeponBase : MonoBehaviour
 
     protected virtual IEnumerator ShootRoutine()
     {
-        isShooting = true;
+        _isShooting = true;
 
         // ëÂã ê∂ê¨
         GameObject bigCube = Instantiate(
@@ -42,7 +55,7 @@ public class ShooterWeponBase : MonoBehaviour
         // ï™äÑÅïî≠éÀ
         SplitAndFire(bigCube);
 
-        isShooting = false;
+        _isShooting = false;
     }
 
     protected virtual void SplitAndFire(GameObject bigCube)
