@@ -5,6 +5,7 @@ public class ProjectileBase : MonoBehaviour
     [Header("Settings")]
     [SerializeField] protected float _speed = 20f;
     [SerializeField] protected float _lifeTime = 5f;
+    [SerializeField] protected float _damage = 20f;
 
     protected Vector3 _moveDirection;
 
@@ -26,6 +27,14 @@ public class ProjectileBase : MonoBehaviour
 
     protected virtual void OnTriggerEnter(Collider other)
     {
+        EnemyBase enemy =
+        other.GetComponent<EnemyBase>();
+
+        if (enemy != null)
+        {
+            enemy.TakeDamage(_damage);
+        }
+
         Destroy(gameObject);
     }
 }
