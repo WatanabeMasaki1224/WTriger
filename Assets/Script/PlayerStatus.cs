@@ -6,7 +6,7 @@ public class PlayerStatus : MonoBehaviour
     [SerializeField] private float _maxTrion = 100f;
     [SerializeField] private float _currentTrion;
 
-    private void Start()
+    private void Awake()
     {
         _currentTrion = _maxTrion;
     }

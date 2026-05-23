@@ -8,7 +8,7 @@ public class ShooterWeponBase : MonoBehaviour
     [SerializeField] protected Transform _firePoint;
     [SerializeField] protected Transform _cameraTransform;
     [SerializeField] protected GameObject _bigCubePrefab;
-    [SerializeField] protected GameObject _projectilePrefab;
+    [SerializeField] protected AsteroidProjectile _asteroidPrefab;
     [Header("ステータス")]
     [SerializeField] protected int _cubeCount = 4;
     [SerializeField] protected float _cubeDelay = 0.3f;
@@ -71,26 +71,28 @@ public class ShooterWeponBase : MonoBehaviour
         for (int i = 0; i < _cubeCount; i++)
         {
             Vector3 spawnPosition = bigCube.transform.position + offsets[i];
-
-            // 小弾生成
-            GameObject projectile = Instantiate(
-                _projectilePrefab,
-                spawnPosition,
-                Quaternion.LookRotation(_cameraTransform.forward)
-            );
-
-            // ProjectileBase取得
-            ProjectileBase projectileBase =
-                projectile.GetComponent<ProjectileBase>();
-
-            // 発射方向設定
-            if (projectileBase != null)
-            {
-                projectileBase.Initialize(_cameraTransform.forward);
-            }
+            CreateProjectile(spawnPosition);
         }
 
         // 大玉削除
         Destroy(bigCube);
+    }
+
+    protected virtual IEnumerator FireProjectile(ProjectileBase projectileBase)
+    {
+        yield return new WaitForSeconds(0.2f);
+
+        projectileBase.Initialize(_cameraTransform.forward);
+    }
+
+    protected virtual void CreateProjectile(Vector3 spawnPosition)
+    {
+        AsteroidProjectile projectile = Instantiate(
+            _asteroidPrefab,
+            spawnPosition,
+            Quaternion.LookRotation(_cameraTransform.forward)
+        );
+
+        StartCoroutine(FireProjectile(projectile));
     }
 }

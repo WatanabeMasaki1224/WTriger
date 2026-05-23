@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class ProjectileBase : MonoBehaviour
@@ -8,6 +9,7 @@ public class ProjectileBase : MonoBehaviour
     [SerializeField] protected float _damage = 20f;
 
     protected Vector3 _moveDirection;
+    protected bool _canMove;
 
     protected virtual void Start()
     {
@@ -17,10 +19,17 @@ public class ProjectileBase : MonoBehaviour
     public virtual void Initialize(Vector3 direction)
     {
         _moveDirection = direction.normalized;
+        _canMove = true;
+        Debug.Log("Initialize");
     }
 
     protected virtual void Update()
     {
+        if (!_canMove)
+        {
+            return;
+        }
+
         transform.position +=
             _moveDirection * _speed * Time.deltaTime;
     }
