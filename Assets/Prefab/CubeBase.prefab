@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4142802734953570511}
   - component: {fileID: 1549459800169109078}
   - component: {fileID: 6803842303974486876}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: CubeBase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -155,3 +155,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ProjectileBase
   _speed: 20
   _lifeTime: 5
+  _damage: 20

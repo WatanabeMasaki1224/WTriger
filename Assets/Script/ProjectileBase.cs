@@ -20,7 +20,6 @@ public class ProjectileBase : MonoBehaviour
     {
         _moveDirection = direction.normalized;
         _canMove = true;
-        Debug.Log("Initialize");
     }
 
     protected virtual void Update()
@@ -36,14 +35,15 @@ public class ProjectileBase : MonoBehaviour
 
     protected virtual void OnTriggerEnter(Collider other)
     {
-        EnemyBase enemy =
-        other.GetComponent<EnemyBase>();
+        if (other.gameObject == gameObject) return;
 
-        if (enemy != null)
+        if (other.TryGetComponent<ProjectileBase>(out _))
+            return;
+
+        if (other.TryGetComponent<EnemyBase>(out var enemy))
         {
             enemy.TakeDamage(_damage);
+            Destroy(gameObject);
         }
-
-        Destroy(gameObject);
     }
 }

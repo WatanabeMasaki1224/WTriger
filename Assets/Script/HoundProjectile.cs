@@ -4,13 +4,28 @@ using UnityEngine.EventSystems;
 public class HoundProjectile : ProjectileBase
 {
     [Header("Hound")]
-    [SerializeField] private float _turnSpeed = 3f;　//曲がる速さ
+    [SerializeField] private float _turnSpeed = 15f;　//曲がる速さ
     [SerializeField] private float _forwardWeight = 0.7f; //どのくらい前進を残すか
     private Transform _target;
+    private Vector3 _startPosition;
+    private Vector3 _curvePoint;
+    private bool _reachedCurvePoint;
+    [SerializeField] private float _curveDistance = 5f;　//どれくらい膨らむか
+
 
     public void SetTarget(Transform target)
     {
         _target = target;
+        _startPosition = transform.position;
+        if(target != null)
+        {
+            Vector3 targetPos = _target.position;
+            //中間地点を決める
+            Vector3 midPoint = (_startPosition + targetPos) * 0.5f;
+            //横方向作成
+            Vector3 side =Vector3.Cross(Vector3.up,(target.position - _startPosition).normalized);
+            _curvePoint = midPoint+ side * _curveDistance;
+        }
     }
 
     protected override void Update()
@@ -21,7 +36,21 @@ public class HoundProjectile : ProjectileBase
         }
         Vector3 dir = _moveDirection;
 
-        if (_target != null)
+        if (!_reachedCurvePoint)
+        {
+            Vector3 toCuver = (_curvePoint - transform.position).normalized;
+            dir = Vector3.Slerp(
+                _moveDirection,
+                toCuver,
+                _turnSpeed * Time.deltaTime
+            );
+            if (Vector3.Distance( transform.position, _curvePoint) < 1f)
+            {
+                _reachedCurvePoint = true;
+            }
+        }
+
+        else if (_target != null)
         {
             Vector3 toTarget =
                 (_target.position - transform.position).normalized;
@@ -33,13 +62,8 @@ public class HoundProjectile : ProjectileBase
                 _turnSpeed * Time.deltaTime
             );
         }
-        _moveDirection = dir;
+        _moveDirection = (_moveDirection * _forwardWeight + dir).normalized;
         transform.forward = _moveDirection;
-
-        transform.position +=
-            _moveDirection * _speed * Time.deltaTime;
-        Debug.Log(_target);
-        Debug.Log(_canMove);
-        Debug.Log(_moveDirection);
+        transform.position += _moveDirection * _speed * Time.deltaTime;
     }
 }

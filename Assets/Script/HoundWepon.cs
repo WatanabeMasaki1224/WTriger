@@ -9,7 +9,6 @@ public class HoundWepon : ShooterWeponBase
     {
         GameObject enemy =
             GameObject.FindGameObjectWithTag("Enemy");
-        Debug.Log(enemy);
         Transform enemyTransform = null;
 
         if (enemy != null)

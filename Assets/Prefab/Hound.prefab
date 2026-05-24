@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4142802734953570511}
   - component: {fileID: 1549459800169109078}
   - component: {fileID: 350122202784057329}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Hound
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -154,7 +154,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HoundProjectile
   _speed: 20
-  _lifeTime: 5
+  _lifeTime: 10
   _damage: 20
   _turnSpeed: 100
-  _forwardWeight: 0
+  _forwardWeight: 1
+  _curveDistance: 10

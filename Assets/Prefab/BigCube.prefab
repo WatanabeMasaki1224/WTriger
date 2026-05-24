@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1010971985854566593}
   - component: {fileID: 2851805585186709712}
   - component: {fileID: 5349736132990052533}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: BigCube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
