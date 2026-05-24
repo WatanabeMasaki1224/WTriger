@@ -734,6 +734,7 @@ GameObject:
   - component: {fileID: 1354341636}
   - component: {fileID: 1354341637}
   - component: {fileID: 1354341638}
+  - component: {fileID: 1354341639}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -952,8 +953,8 @@ MonoBehaviour:
     m_ActionName: 'Player/Jump[/Keyboard/space]'
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1354341638}
-        m_TargetAssemblyTypeName: HoundWepon, Assembly-CSharp
+      - m_Target: {fileID: 1354341639}
+        m_TargetAssemblyTypeName: MeteoraWepon, Assembly-CSharp
         m_MethodName: OnFire
         m_Mode: 0
         m_Arguments:
@@ -1012,7 +1013,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1354341627}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 83c55bfd86b95f74195113ffcfd1c30c, type: 3}
   m_Name: 
@@ -1026,6 +1027,27 @@ MonoBehaviour:
   _cubeSpread: 0.3
   _trionCost: 10
   _houndPrefab: {fileID: 350122202784057329, guid: c9570dc3289827f4eaea1988f658acb6, type: 3}
+--- !u!114 &1354341639
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1354341627}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8bf121f20c0f59949853541ad6406e72, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MeteoraWepon
+  _firePoint: {fileID: 291964330}
+  _cameraTransform: {fileID: 330585546}
+  _bigCubePrefab: {fileID: 5880552311611982871, guid: 2a094f9deea854242ba295e445b20f2a, type: 3}
+  _asteroidPrefab: {fileID: 1314273490597141248, guid: 6b88499ec55cf074992cb981325bd797, type: 3}
+  _cubeCount: 4
+  _cubeDelay: 0.3
+  _cubeSpread: 0.3
+  _trionCost: 10
+  _meteoraPrefab: {fileID: 2027740056390401547, guid: afade7b0187cd0e42b7997c1e9530ce5, type: 3}
 --- !u!1 &1731229500
 GameObject:
   m_ObjectHideFlags: 0
