@@ -239,7 +239,7 @@ Transform:
   m_GameObject: {fileID: 125006486}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.21, y: -0.45, z: 4.09}
+  m_LocalPosition: {x: -3.64, y: -0.45, z: 9.93}
   m_LocalScale: {x: 3, y: 3, z: 3}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -254,7 +254,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 291964330}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: FirePoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -270,7 +270,7 @@ Transform:
   m_GameObject: {fileID: 291964329}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.51, y: 0, z: 1.43}
+  m_LocalPosition: {x: 1.51, y: 0, z: 3.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -288,7 +288,7 @@ GameObject:
   - component: {fileID: 330585545}
   - component: {fileID: 330585544}
   - component: {fileID: 330585547}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -731,11 +731,12 @@ GameObject:
   - component: {fileID: 1354341629}
   - component: {fileID: 1354341634}
   - component: {fileID: 1354341635}
-  - component: {fileID: 1354341636}
   - component: {fileID: 1354341637}
+  - component: {fileID: 1354341636}
   - component: {fileID: 1354341638}
   - component: {fileID: 1354341639}
-  m_Layer: 0
+  - component: {fileID: 1354341640}
+  m_Layer: 7
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -953,8 +954,8 @@ MonoBehaviour:
     m_ActionName: 'Player/Jump[/Keyboard/space]'
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1354341639}
-        m_TargetAssemblyTypeName: MeteoraWepon, Assembly-CSharp
+      - m_Target: {fileID: 1354341640}
+        m_TargetAssemblyTypeName: VipreWepon, Assembly-CSharp
         m_MethodName: OnFire
         m_Mode: 0
         m_Arguments:
@@ -967,6 +968,54 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 24b82ba7-56fd-4b53-9c68-5daacd42dd94
     m_ActionName: 'Player/Fire[/Mouse/leftButton]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1354341640}
+        m_TargetAssemblyTypeName: VipreWepon, Assembly-CSharp
+        m_MethodName: OnViper1
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 78d3c949-5cac-4a37-8191-40bdbd6c5c4e
+    m_ActionName: 'Player/Viper1[/Keyboard/1]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1354341640}
+        m_TargetAssemblyTypeName: VipreWepon, Assembly-CSharp
+        m_MethodName: OnViper2
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 44e89603-9821-4d65-9f29-b8e5a198dd39
+    m_ActionName: 'Player/Viper2[/Keyboard/2]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1354341640}
+        m_TargetAssemblyTypeName: VipreWepon, Assembly-CSharp
+        m_MethodName: OnViper3
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 8e490ace-bedd-4f0a-9fca-d9c875837c31
+    m_ActionName: 'Player/Viper3[/Keyboard/3]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -1034,7 +1083,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1354341627}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8bf121f20c0f59949853541ad6406e72, type: 3}
   m_Name: 
@@ -1048,6 +1097,28 @@ MonoBehaviour:
   _cubeSpread: 0.3
   _trionCost: 10
   _meteoraPrefab: {fileID: 2027740056390401547, guid: afade7b0187cd0e42b7997c1e9530ce5, type: 3}
+--- !u!114 &1354341640
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1354341627}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a537120fe0e2744182d9a956fea0161, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VipreWepon
+  _firePoint: {fileID: 1354341633}
+  _cameraTransform: {fileID: 1354341633}
+  _bigCubePrefab: {fileID: 1698224547999700599, guid: 35a600663f97a464184af573b16e4097, type: 3}
+  _asteroidPrefab: {fileID: 1314273490597141248, guid: 6b88499ec55cf074992cb981325bd797, type: 3}
+  _cubeCount: 4
+  _cubeDelay: 0.3
+  _cubeSpread: 0.3
+  _trionCost: 10
+  _viperPrefab: {fileID: 6070317147335694845, guid: c3cd3e34403d8d94382426adac5c507c, type: 3}
+  _currentPattern: 0
 --- !u!1 &1731229500
 GameObject:
   m_ObjectHideFlags: 0
@@ -1057,7 +1128,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1731229501}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: CameraPivot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
