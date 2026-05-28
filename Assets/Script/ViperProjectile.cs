@@ -33,6 +33,93 @@ public class ViperProjectile : ProjectileBase
         _pattern = pattern;
     }
 
-    
+    public void SetTargetPosition(Vector3 targetPos)
+    {
+        _targetPosition = targetPos;
 
+        switch(_pattern)
+        {
+            case ViperPattern.SideCurve:
+                SetupSideCurve(); 
+                break;
+
+            case ViperPattern.UpperCurve: 
+                SetupUpperCurve();
+                break;
+
+            case ViperPattern.BackCurve: 
+                SetupBackCurve();
+                break;
+
+        }
+    }
+
+    protected override void Update()
+    {
+        if (!_canMove)
+        {
+            return;
+        }
+
+        switch (_pattern)
+        {
+            case ViperPattern.SideCurve:
+                UpdateSideCurve();
+                break;
+
+            case ViperPattern.UpperCurve:
+                Debug.Log("è„ÉJÅ[Éu");
+                break;
+
+            case ViperPattern.BackCurve:
+                Debug.Log("çƒìÀåÇ");
+                break;
+        }
+
+        transform.position +=
+            _moveDirection * _speed * Time.deltaTime;
+    }
+
+    private void  SetupSideCurve()
+    {
+        _startPosition = transform.position;
+        Vector3 direction = (_targetPosition - _startPosition).normalized;
+        Vector3 basePoint = Vector3.Lerp(_startPosition,_targetPosition,0.8f);
+        Vector3 side = Vector3.Cross(Vector3.up, direction);
+        float randomSide = Random.Range(0, 2) == 0 ? -1f : 1f;
+        _curvePoint = basePoint + side * randomSide * _curveDistance;
+    }
+
+    private void UpdateSideCurve()
+    {
+        Vector3 dir = _moveDirection;
+
+        if (!_reachedCurvePoint)
+        {
+            Vector3 toCurve =(_curvePoint - transform.position).normalized;
+            dir = Vector3.Slerp(_moveDirection, toCurve, _turnSpeed * Time.deltaTime );
+
+            if (Vector3.Distance( transform.position, _curvePoint) < 1f)
+            {
+                _reachedCurvePoint = true;
+            }
+        }
+        else
+        {
+            Vector3 toTarget =(_targetPosition - transform.position).normalized;
+            dir = Vector3.Slerp(_moveDirection, toTarget, _turnSpeed * Time.deltaTime);
+        }
+
+        _moveDirection = dir.normalized;
+    }
+
+    private void SetupUpperCurve()
+    {
+        
+    }
+
+    private void SetupBackCurve()
+    {
+
+    }
 }

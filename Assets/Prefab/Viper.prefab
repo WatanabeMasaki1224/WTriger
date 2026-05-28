@@ -158,7 +158,7 @@ MonoBehaviour:
   _damage: 20
   _pattern: 0
   _turnSpeed: 10
-  _curveDistance: 5
+  _curveDistance: 10
   _scatterPower: 0.3
   _redirectTime: 1.5
   _searchRadius: 15

@@ -68,6 +68,42 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Asteroid",
+                    "type": "Button",
+                    "id": "c1080f2f-678d-4160-83ab-c0efb72030fc",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Meteora",
+                    "type": "Button",
+                    "id": "546e8681-7483-422e-b459-2230d2f1bcd4",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Hund",
+                    "type": "Button",
+                    "id": "bef8aa33-2894-44ec-9a3d-55dfb133cbcd",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Viper",
+                    "type": "Button",
+                    "id": "2d0bdcbb-149e-4936-95a3-3b5f19400da7",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -189,6 +225,50 @@
                     "processors": "",
                     "groups": "",
                     "action": "Viper2",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0daf6752-0ca2-45e5-87fc-7309b93a5229",
+                    "path": "<Keyboard>/6",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Asteroid",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "595a5dc3-fbb9-4585-a226-9860acaf9d39",
+                    "path": "<Keyboard>/7",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Meteora",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b77f6b86-e7e8-4594-b7f1-33a337748ad1",
+                    "path": "<Keyboard>/8",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Hund",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a589a094-5755-4b1c-83e1-c8709f82ede8",
+                    "path": "<Keyboard>/9",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Viper",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
