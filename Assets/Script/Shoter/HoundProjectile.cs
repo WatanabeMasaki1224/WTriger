@@ -11,21 +11,24 @@ public class HoundProjectile : ProjectileBase
     private Vector3 _curvePoint;
     private bool _reachedCurvePoint;
     [SerializeField] private float _curveDistance = 5f;　//どれくらい膨らむか
+    private bool _hasTarget;
 
 
     public void SetTarget(Transform target)
     {
         _target = target;
         _startPosition = transform.position;
-        if(target != null)
-        {
-            Vector3 targetPos = _target.position;
-            //中間地点を決める
-            Vector3 midPoint = (_startPosition + targetPos) * 0.5f;
-            //横方向作成
-            Vector3 side =Vector3.Cross(Vector3.up,(target.position - _startPosition).normalized);
-            _curvePoint = midPoint+ side * _curveDistance;
-        }
+        _reachedCurvePoint = false;
+        _hasTarget = target != null;
+
+        if (!_hasTarget) return;
+        Vector3 targetPos = _target.position;
+        //中間地点を決める
+        Vector3 midPoint = (_startPosition + targetPos) * 0.5f;
+        //横方向作成
+        Vector3 side =Vector3.Cross(Vector3.up,(target.position - _startPosition).normalized);
+        _curvePoint = midPoint+ side * _curveDistance;
+        
     }
 
     protected override void Update()
@@ -36,14 +39,20 @@ public class HoundProjectile : ProjectileBase
         }
         Vector3 dir = _moveDirection;
 
+        //敵なし → 直進だけ
+        if (!_hasTarget)
+        {
+            _moveDirection = dir;
+            transform.forward = _moveDirection;
+            transform.position += _moveDirection * _speed * Time.deltaTime;
+            return;
+        }
+
+        // カーブ処理
         if (!_reachedCurvePoint)
         {
             Vector3 toCuver = (_curvePoint - transform.position).normalized;
-            dir = Vector3.Slerp(
-                _moveDirection,
-                toCuver,
-                _turnSpeed * Time.deltaTime
-            );
+            dir = Vector3.Slerp(_moveDirection,toCuver, _turnSpeed * Time.deltaTime);
             if (Vector3.Distance( transform.position, _curvePoint) < 1f)
             {
                 _reachedCurvePoint = true;
@@ -56,11 +65,7 @@ public class HoundProjectile : ProjectileBase
                 (_target.position - transform.position).normalized;
 
             // 少しだけ追尾方向へ寄せる
-            dir = Vector3.Slerp(
-                _moveDirection,
-                toTarget,
-                _turnSpeed * Time.deltaTime
-            );
+            dir = Vector3.Slerp( _moveDirection, toTarget,_turnSpeed * Time.deltaTime);
         }
         _moveDirection = (_moveDirection * _forwardWeight + dir).normalized;
         transform.forward = _moveDirection;

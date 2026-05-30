@@ -17,11 +17,11 @@ public class VipreWepon : ShooterWeponBase
 
         projectile.SetPattern(_currentPattern);
         StartCoroutine(FireProjectile(projectile));
-        GameObject enemy = GameObject.FindGameObjectWithTag("Enemy");
+        Transform target = GetLockTarget();
 
-        if(enemy != null)
+        if (target != null)
         {
-            projectile.SetTargetPosition(enemy.transform.position);
+            projectile.SetTargetPosition(target.position);
         }
     }
 

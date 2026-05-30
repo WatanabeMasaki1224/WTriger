@@ -24,9 +24,8 @@ public class ViperProjectile : ProjectileBase
     private Vector3 _curvePoint;
 
     private bool _reachedCurvePoint;
-    private bool _hasRedirected;
+    private bool _hasTarget;
 
-    private float _timer;
 
     public void SetPattern(ViperPattern pattern)
     {
@@ -36,8 +35,9 @@ public class ViperProjectile : ProjectileBase
     public void SetTargetPosition(Vector3 targetPos)
     {
         _targetPosition = targetPos;
+        _hasTarget = true;
 
-        switch(_pattern)
+        switch (_pattern)
         {
             case ViperPattern.SideCurve:
                 SetupSideCurve(); 
@@ -61,6 +61,13 @@ public class ViperProjectile : ProjectileBase
             return;
         }
 
+        //敵なし → 直進
+        if (!_hasTarget)
+        {
+            transform.position +=_moveDirection * _speed * Time.deltaTime;
+            return;
+        }
+
         switch (_pattern)
         {
             case ViperPattern.SideCurve:
@@ -68,7 +75,7 @@ public class ViperProjectile : ProjectileBase
                 break;
 
             case ViperPattern.UpperCurve:
-                Debug.Log("上カーブ");
+                UpdateSideCurve();
                 break;
 
             case ViperPattern.BackCurve:
@@ -76,8 +83,7 @@ public class ViperProjectile : ProjectileBase
                 break;
         }
 
-        transform.position +=
-            _moveDirection * _speed * Time.deltaTime;
+        transform.position += _moveDirection * _speed * Time.deltaTime;
     }
 
     private void  SetupSideCurve()
@@ -115,7 +121,9 @@ public class ViperProjectile : ProjectileBase
 
     private void SetupUpperCurve()
     {
-        
+        _startPosition = transform.position;
+        Vector3 basePoint = Vector3.Lerp(_startPosition, _targetPosition, 0.8f);
+        _curvePoint = basePoint + Vector3.up * _curveDistance;
     }
 
     private void SetupBackCurve()

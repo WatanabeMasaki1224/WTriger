@@ -14,6 +14,10 @@ public class ShooterWeponBase : MonoBehaviour
     [SerializeField] protected float _cubeDelay = 0.3f;
     [SerializeField] protected float _cubeSpread = 0.3f;
     [SerializeField] protected float _trionCost = 10f;
+    [Header("ƒƒbƒNƒIƒ“")]
+    [SerializeField] protected float _lockOnRange = 15f;
+    [SerializeField] protected float _lookOnAngle = 60f;
+    [SerializeField] protected LayerMask _enemyLayer;
 
     protected PlayerStatus _playerStatus;
     protected bool _isShooting;
@@ -94,5 +98,36 @@ public class ShooterWeponBase : MonoBehaviour
         );
 
         StartCoroutine(FireProjectile(projectile));
+    }
+
+    protected Transform GetLockTarget()
+    {
+        Collider[] hits = Physics.OverlapSphere(_firePoint.position, _lockOnRange, _enemyLayer);
+        Debug.Log($"Œó•â”:{hits.Length}");
+        Transform nearestTarget = null;
+        float nearestDistance = Mathf.Infinity;
+
+        foreach (Collider hit in hits)
+        {
+            Debug.Log(hit.name);
+            Vector3 enemyPosition = hit.transform.position - _firePoint.position;
+            float angle = Vector3.Angle(_cameraTransform.forward, enemyPosition);
+
+            if(angle > _lookOnAngle * 0.5f)
+            {
+                continue;
+            }
+
+            float distance  =  enemyPosition.magnitude;
+
+            if(distance < nearestDistance)
+            {
+                nearestDistance = distance;
+                nearestTarget = hit.transform;
+            }
+                
+        }
+
+        return nearestTarget;
     }
 }

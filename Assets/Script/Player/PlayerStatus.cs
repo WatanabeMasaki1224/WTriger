@@ -4,7 +4,7 @@ public class PlayerStatus : MonoBehaviour
 {
     [Header("Trion")]
     [SerializeField] private float _maxTrion = 100f;
-    [SerializeField] private float _currentTrion;
+    private float _currentTrion;
 
     private void Awake()
     {

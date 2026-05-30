@@ -7,14 +7,7 @@ public class HoundWepon : ShooterWeponBase
 
     protected override void CreateProjectile(Vector3 spawnPosition)
     {
-        GameObject enemy =
-            GameObject.FindGameObjectWithTag("Enemy");
-        Transform enemyTransform = null;
-
-        if (enemy != null)
-        {
-            enemyTransform = enemy.transform;
-        }
+        Transform target = GetLockTarget();
 
         HoundProjectile projectile = Instantiate(
             _houndPrefab,
@@ -22,8 +15,7 @@ public class HoundWepon : ShooterWeponBase
             Quaternion.LookRotation(_cameraTransform.forward)
         );
 
-        projectile.SetTarget(enemyTransform);
-
+        projectile.SetTarget(target);
         StartCoroutine(FireProjectile(projectile));
     }
 }

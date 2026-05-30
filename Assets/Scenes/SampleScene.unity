@@ -476,7 +476,7 @@ GameObject:
   - component: {fileID: 1035283009}
   - component: {fileID: 1035283008}
   - component: {fileID: 1035283007}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Enemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -584,7 +584,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.63372, y: -0.45, z: 9.87}
-  m_LocalScale: {x: 3, y: 3, z: 3}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -978,6 +978,11 @@ MonoBehaviour:
   _cubeDelay: 0.3
   _cubeSpread: 0.3
   _trionCost: 10
+  _lockOnRange: 50
+  _lookOnAngle: 100
+  _enemyLayer:
+    serializedVersion: 2
+    m_Bits: 1024
 --- !u!114 &1354341637
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -990,8 +995,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9805e91a1184b934e87755514200dbff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerStatus
-  _maxTrion: 100
-  _currentTrion: 0
+  _maxTrion: 1000
 --- !u!114 &1354341638
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1012,6 +1016,11 @@ MonoBehaviour:
   _cubeDelay: 0.3
   _cubeSpread: 0.3
   _trionCost: 10
+  _lockOnRange: 15
+  _lookOnAngle: 60
+  _enemyLayer:
+    serializedVersion: 2
+    m_Bits: 1024
   _houndPrefab: {fileID: 350122202784057329, guid: c9570dc3289827f4eaea1988f658acb6, type: 3}
 --- !u!114 &1354341639
 MonoBehaviour:
@@ -1033,6 +1042,11 @@ MonoBehaviour:
   _cubeDelay: 0.3
   _cubeSpread: 0.3
   _trionCost: 10
+  _lockOnRange: 15
+  _lookOnAngle: 60
+  _enemyLayer:
+    serializedVersion: 2
+    m_Bits: 1024
   _meteoraPrefab: {fileID: 2027740056390401547, guid: afade7b0187cd0e42b7997c1e9530ce5, type: 3}
 --- !u!114 &1354341640
 MonoBehaviour:
@@ -1054,6 +1068,11 @@ MonoBehaviour:
   _cubeDelay: 0.3
   _cubeSpread: 0.3
   _trionCost: 10
+  _lockOnRange: 15
+  _lookOnAngle: 60
+  _enemyLayer:
+    serializedVersion: 2
+    m_Bits: 1024
   _viperPrefab: {fileID: 6070317147335694845, guid: c3cd3e34403d8d94382426adac5c507c, type: 3}
   _currentPattern: 0
 --- !u!1 &1731229500
