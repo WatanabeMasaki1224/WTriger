@@ -26,11 +26,27 @@ public class MeteoraWepon : ShooterWeponBase
 
     protected override void CreateProjectile(Vector3 spawnPosition)
     {
+        Transform target = GetLockTarget();
+
+        Vector3 dir = _cameraTransform.forward;
+
+        if (target != null)
+        {
+            dir = (target.position - spawnPosition).normalized;
+        }
+
         MeteoraProjectile projectile = Instantiate(
             _meteoraPrefab,
             spawnPosition,
-            Quaternion.LookRotation(_cameraTransform.forward)
+            Quaternion.identity
         );
-        StartCoroutine(FireProjectile(projectile));
+        StartCoroutine(SetAsteroidDirection(projectile,dir));
+    }
+
+    private IEnumerator SetAsteroidDirection(MeteoraProjectile projectile, Vector3 dir)
+    {
+        yield return new WaitForSeconds(0.2f);
+
+        projectile.Initialize(dir);
     }
 }

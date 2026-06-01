@@ -156,5 +156,5 @@ MonoBehaviour:
   _speed: 20
   _lifeTime: 5
   _damage: 20
-  _explosionRadius: 8
+  _explosionRadius: 4
   _explosionDamage: 40

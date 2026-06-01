@@ -605,10 +605,10 @@ GameObject:
   - component: {fileID: 1354341634}
   - component: {fileID: 1354341635}
   - component: {fileID: 1354341637}
-  - component: {fileID: 1354341636}
   - component: {fileID: 1354341638}
   - component: {fileID: 1354341639}
   - component: {fileID: 1354341640}
+  - component: {fileID: 1354341641}
   m_Layer: 7
   m_Name: Player
   m_TagString: Untagged
@@ -891,8 +891,8 @@ MonoBehaviour:
     m_ActionName: 'Player/Viper3[/Keyboard/3]'
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1354341636}
-        m_TargetAssemblyTypeName: ShooterWeponBase, Assembly-CSharp
+      - m_Target: {fileID: 1354341641}
+        m_TargetAssemblyTypeName: AsteroidWepon, Assembly-CSharp
         m_MethodName: OnFire
         m_Mode: 0
         m_Arguments:
@@ -958,31 +958,6 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!114 &1354341636
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1354341627}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f054d31b01b16854b81e7f65c89c7ca1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ShooterWeponBase
-  _firePoint: {fileID: 291964330}
-  _cameraTransform: {fileID: 330585546}
-  _bigCubePrefab: {fileID: 5880552311611982871, guid: 2a094f9deea854242ba295e445b20f2a, type: 3}
-  _asteroidPrefab: {fileID: 1314273490597141248, guid: 6b88499ec55cf074992cb981325bd797, type: 3}
-  _cubeCount: 4
-  _cubeDelay: 0.3
-  _cubeSpread: 0.3
-  _trionCost: 10
-  _lockOnRange: 50
-  _lookOnAngle: 100
-  _enemyLayer:
-    serializedVersion: 2
-    m_Bits: 1024
 --- !u!114 &1354341637
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1017,7 +992,7 @@ MonoBehaviour:
   _cubeSpread: 0.3
   _trionCost: 10
   _lockOnRange: 15
-  _lookOnAngle: 60
+  _lookOnAngle: 180
   _enemyLayer:
     serializedVersion: 2
     m_Bits: 1024
@@ -1043,7 +1018,7 @@ MonoBehaviour:
   _cubeSpread: 0.3
   _trionCost: 10
   _lockOnRange: 15
-  _lookOnAngle: 60
+  _lookOnAngle: 180
   _enemyLayer:
     serializedVersion: 2
     m_Bits: 1024
@@ -1069,12 +1044,37 @@ MonoBehaviour:
   _cubeSpread: 0.3
   _trionCost: 10
   _lockOnRange: 15
-  _lookOnAngle: 60
+  _lookOnAngle: 180
   _enemyLayer:
     serializedVersion: 2
     m_Bits: 1024
   _viperPrefab: {fileID: 6070317147335694845, guid: c3cd3e34403d8d94382426adac5c507c, type: 3}
   _currentPattern: 0
+--- !u!114 &1354341641
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1354341627}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e86fb605d30c3b41a80c944d055c110, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AsteroidWepon
+  _firePoint: {fileID: 291964330}
+  _cameraTransform: {fileID: 330585546}
+  _bigCubePrefab: {fileID: 5880552311611982871, guid: 2a094f9deea854242ba295e445b20f2a, type: 3}
+  _asteroidPrefab: {fileID: 1314273490597141248, guid: 6b88499ec55cf074992cb981325bd797, type: 3}
+  _cubeCount: 4
+  _cubeDelay: 0.3
+  _cubeSpread: 0.3
+  _trionCost: 10
+  _lockOnRange: 15
+  _lookOnAngle: 150
+  _enemyLayer:
+    serializedVersion: 2
+    m_Bits: 1024
 --- !u!1 &1731229500
 GameObject:
   m_ObjectHideFlags: 0
