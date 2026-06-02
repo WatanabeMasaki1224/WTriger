@@ -13,7 +13,10 @@ public class HoundProjectile : ProjectileBase
     [SerializeField] private float _curveDistance = 5f;　//どれくらい膨らむか
     private bool _hasTarget;
 
-
+    /// <summary>
+    /// 追尾対象を設定し軌道を初期化する
+    /// </summary>
+    /// <param name="target"></param>
     public void SetTarget(Transform target)
     {
         _target = target;
@@ -23,9 +26,9 @@ public class HoundProjectile : ProjectileBase
 
         if (!_hasTarget) return;
         Vector3 targetPos = _target.position;
-        //中間地点を決める
+        //敵との中間地点を計算
         Vector3 midPoint = (_startPosition + targetPos) * 0.5f;
-        //横方向作成
+        //カーブ用の横方向ベクトルを作成
         Vector3 side =Vector3.Cross(Vector3.up,(target.position - _startPosition).normalized);
         _curvePoint = midPoint+ side * _curveDistance;
         

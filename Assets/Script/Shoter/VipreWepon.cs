@@ -25,6 +25,10 @@ public class VipreWepon : ShooterWeponBase
         }
     }
 
+    /// <summary>
+    /// 左右カーブモードに変更
+    /// </summary>
+    /// <param name="context"></param>
     public void OnViper1(InputAction.CallbackContext context)
     {
         if (!context.performed)
@@ -38,6 +42,10 @@ public class VipreWepon : ShooterWeponBase
         Debug.Log("左右カーブに切り替え");
     }
 
+    /// <summary>
+    /// 上方向カーブモードに変更
+    /// </summary>
+    /// <param name="context"></param>
     public void OnViper2(InputAction.CallbackContext context)
     {
         if (!context.performed)
@@ -51,6 +59,10 @@ public class VipreWepon : ShooterWeponBase
         Debug.Log("上カーブに切り替え");
     }
 
+    /// <summary>
+    /// 再突撃モードに変更
+    /// </summary>
+    /// <param name="context"></param>
     public void OnViper3(InputAction.CallbackContext context)
     {
         if (!context.performed)

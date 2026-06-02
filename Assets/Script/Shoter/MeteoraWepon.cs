@@ -43,6 +43,12 @@ public class MeteoraWepon : ShooterWeponBase
         StartCoroutine(SetAsteroidDirection(projectile,dir));
     }
 
+    /// <summary>
+    /// 弾を発射（引数の関係でベースのやつがつかえないため）
+    /// </summary>
+    /// <param name="projectile"></param>
+    /// <param name="dir"></param>
+    /// <returns></returns>
     private IEnumerator SetAsteroidDirection(MeteoraProjectile projectile, Vector3 dir)
     {
         yield return new WaitForSeconds(0.2f);

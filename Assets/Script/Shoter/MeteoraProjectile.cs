@@ -12,6 +12,9 @@ public class MeteoraProjectile : ProjectileBase
         Exprode();
     }
 
+    /// <summary>
+    /// ”š”­ˆ—
+    /// </summary>
     private void Exprode()
     {
         Collider[] hits = Physics.OverlapSphere(transform.position, _explosionRadius);

@@ -15,6 +15,10 @@ public class ProjectileBase : MonoBehaviour
     {
         Destroy(gameObject, _lifeTime);
     }
+    /// <summary>
+    /// ’e‚ÌˆÚ“®•ûŒü‚ğİ’è‚·‚é
+    /// </summary>
+    /// <param name="direction"></param>
 
     public virtual void Initialize(Vector3 direction)
     {
@@ -22,6 +26,9 @@ public class ProjectileBase : MonoBehaviour
         _canMove = true;
     }
 
+    /// <summary>
+    /// ’e‚ğˆÚ“®‚³‚¹‚é
+    /// </summary>
     protected virtual void Update()
     {
         if (!_canMove)
@@ -33,6 +40,10 @@ public class ProjectileBase : MonoBehaviour
             _moveDirection * _speed * Time.deltaTime;
     }
 
+    /// <summary>
+    /// Õ“Ë‚Ìˆ—
+    /// </summary>
+    /// <param name="other"></param>
     protected virtual void OnTriggerEnter(Collider other)
     {
         if (other.gameObject == gameObject) return;

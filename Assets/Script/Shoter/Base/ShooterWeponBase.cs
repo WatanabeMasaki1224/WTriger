@@ -27,6 +27,10 @@ public class ShooterWeponBase : MonoBehaviour
         _playerStatus = GetComponent<PlayerStatus>();
     }
 
+    /// <summary>
+    /// ”­Ë“ü—Í‚ğó‚¯æ‚é
+    /// </summary>
+    /// <param name="context"></param>
     public void OnFire(InputAction.CallbackContext context)
     {
         if (_isShooting)
@@ -42,6 +46,10 @@ public class ShooterWeponBase : MonoBehaviour
         StartCoroutine(ShootRoutine());
     }
 
+    /// <summary>
+    /// ‘å‹Ê‚ğì¬A•ªŠ„‚µ”­Ë‚Ü‚Å‚Ì—¬‚ê
+    /// </summary>
+    /// <returns></returns>
     protected virtual IEnumerator ShootRoutine()
     {
         _isShooting = true;
@@ -62,6 +70,10 @@ public class ShooterWeponBase : MonoBehaviour
         _isShooting = false;
     }
 
+    /// <summary>
+    /// ‘å‹Ê‚Ì•ªŠ„ˆ—
+    /// </summary>
+    /// <param name="bigCube"></param>
     protected virtual void SplitAndFire(GameObject bigCube)
     {
         Vector3[] offsets =
@@ -82,6 +94,11 @@ public class ShooterWeponBase : MonoBehaviour
         Destroy(bigCube);
     }
 
+    /// <summary>
+    /// ’e‚ğ”­Ë
+    /// </summary>
+    /// <param name="projectileBase"></param>
+    /// <returns></returns>
     protected virtual IEnumerator FireProjectile(ProjectileBase projectileBase)
     {
         yield return new WaitForSeconds(0.2f);
@@ -89,6 +106,10 @@ public class ShooterWeponBase : MonoBehaviour
         projectileBase.Initialize(_cameraTransform.forward);
     }
 
+    /// <summary>
+    /// ’e‚Ì¶¬
+    /// </summary>
+    /// <param name="spawnPosition"></param>
     protected virtual void CreateProjectile(Vector3 spawnPosition)
     {
         AsteroidProjectile projectile = Instantiate(
@@ -100,6 +121,10 @@ public class ShooterWeponBase : MonoBehaviour
         StartCoroutine(FireProjectile(projectile));
     }
 
+    /// <summary>
+    /// ƒƒbƒN‚Ì‘ÎÛ‚ğŠ“¾
+    /// </summary>
+    /// <returns></returns>
     protected Transform GetLockTarget()
     {
         Collider[] hits = Physics.OverlapSphere(_firePoint.position, _lockOnRange, _enemyLayer);
