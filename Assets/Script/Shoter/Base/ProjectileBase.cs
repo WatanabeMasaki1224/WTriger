@@ -56,5 +56,8 @@ public class ProjectileBase : MonoBehaviour
             enemy.TakeDamage(_damage);
             Destroy(gameObject);
         }
+
+        // それ以外は全部消す（壁・シールド・地形など）
+        Destroy(gameObject);
     }
 }
