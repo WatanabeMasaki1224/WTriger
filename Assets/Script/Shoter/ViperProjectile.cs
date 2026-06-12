@@ -87,7 +87,6 @@ public class ViperProjectile : ProjectileBase
                 break;
 
             case ViperPattern.BackCurve:
-                Debug.Log("Ä“ËŒ‚");
                 break;
         }
 

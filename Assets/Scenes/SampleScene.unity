@@ -476,6 +476,7 @@ GameObject:
   - component: {fileID: 1035283009}
   - component: {fileID: 1035283008}
   - component: {fileID: 1035283007}
+  - component: {fileID: 1035283012}
   m_Layer: 10
   m_Name: Enemy
   m_TagString: Enemy
@@ -589,6 +590,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1035283012
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1035283006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d151a1a903774dd4ebac490f9f9e1649, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyMoveTest
+  moveSpeed: 3
 --- !u!1 &1354341627
 GameObject:
   m_ObjectHideFlags: 0
@@ -609,6 +623,7 @@ GameObject:
   - component: {fileID: 1354341639}
   - component: {fileID: 1354341640}
   - component: {fileID: 1354341641}
+  - component: {fileID: 1354341642}
   m_Layer: 7
   m_Name: Player
   m_TagString: Untagged
@@ -728,7 +743,7 @@ Transform:
   m_GameObject: {fileID: 1354341627}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.31686, y: 0.2218, z: 0.31686}
+  m_LocalPosition: {x: 0.31686, y: 0.2218, z: 0.06}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1018,7 +1033,7 @@ MonoBehaviour:
   _cubeSpread: 0.3
   _trionCost: 10
   _lockOnRange: 15
-  _lookOnAngle: 180
+  _lookOnAngle: 90
   _enemyLayer:
     serializedVersion: 2
     m_Bits: 1024
@@ -1071,10 +1086,27 @@ MonoBehaviour:
   _cubeSpread: 0.3
   _trionCost: 10
   _lockOnRange: 15
-  _lookOnAngle: 150
+  _lookOnAngle: 90
   _enemyLayer:
     serializedVersion: 2
     m_Bits: 1024
+--- !u!114 &1354341642
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1354341627}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e6dec1faaa8e594b82190e63ea3c213, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Shield
+  _playerStatus: {fileID: 1354341637}
+  _frontShieldPrefab: {fileID: 0}
+  _fullShieldPrefab: {fileID: 0}
+  _frontShieldCost: 5
+  _fullShieldCost: 10
 --- !u!1 &1731229500
 GameObject:
   m_ObjectHideFlags: 0

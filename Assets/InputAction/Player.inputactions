@@ -104,6 +104,24 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "FrontSheld",
+                    "type": "Button",
+                    "id": "e040b345-454d-45a8-9d2a-3bcdae4ba9af",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "FullShield",
+                    "type": "Button",
+                    "id": "7da44a94-c9a8-4846-b842-3a0771f590fc",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -269,6 +287,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "Viper",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "54861f07-2e78-441b-8051-d8b67a662a9e",
+                    "path": "<Keyboard>/4",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "FrontSheld",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f0d8befb-97f3-4f32-872c-9dd5ef80da26",
+                    "path": "<Keyboard>/5",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "FullShield",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

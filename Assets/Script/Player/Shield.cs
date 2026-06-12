@@ -14,6 +14,7 @@ public class Shield : MonoBehaviour
     [SerializeField] private GameObject _fullShieldPrefab;
     [SerializeField] private float _frontShieldCost = 5f;
     [SerializeField] private float _fullShieldCost = 10f;
+    [SerializeField] private Transform _frontShieldPoint;
     private bool _isShieldActive;
     private ShieldType _currentShieldType;
     private GameObject _currentShield;
@@ -27,7 +28,7 @@ public class Shield : MonoBehaviour
             return;
         }
 
-        _timer = Time.deltaTime;
+        _timer += Time.deltaTime;
 
         if(_timer < 1f)
         {
@@ -95,19 +96,22 @@ public class Shield : MonoBehaviour
     {
         DisableShield(); //すでにシールドがある場合削除するため
         GameObject shieldPrefab = null;
+        Transform spawnPoint = null;
 
         switch (shieldType)
         {
             case ShieldType.Front:
                 shieldPrefab = _frontShieldPrefab;
+                spawnPoint = _frontShieldPoint;
                 break;
 
             case ShieldType.Full:
                 shieldPrefab = _fullShieldPrefab;
+                spawnPoint = transform; // プレイヤー中心
                 break;
         }
 
-        _currentShield = Instantiate(shieldPrefab,transform.position,transform.rotation,transform);
+        _currentShield = Instantiate(shieldPrefab,spawnPoint.position,transform.rotation,transform);
 
         _currentShieldType = shieldType;
         _isShieldActive = true;
