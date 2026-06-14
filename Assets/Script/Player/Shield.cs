@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class Shield : MonoBehaviour
+public class Shield : SubWeponBase
 {
     public enum ShieldType
     {
@@ -58,32 +58,14 @@ public class Shield : MonoBehaviour
     /// <summary>
     /// 前方シールド入力
     /// </summary>
-    public void OnFrontShield(InputAction.CallbackContext context)
+    public override void OnFire(InputAction.CallbackContext context)
     {
         if (context.started)
         {
-            ActivateShield(ShieldType.Front);
+            ActivateShield(_currentShieldType);
         }
 
-        if (context.canceled &&
-            _currentShieldType == ShieldType.Front)
-        {
-            DisableShield();
-        }
-    }
-
-    /// <summary>
-    /// 全方位シールド入力
-    /// </summary>
-    public void OnFullShield(InputAction.CallbackContext context)
-    {
-        if (context.started)
-        {
-            ActivateShield(ShieldType.Full);
-        }
-
-        if (context.canceled &&
-            _currentShieldType == ShieldType.Full)
+        if (context.canceled)
         {
             DisableShield();
         }
