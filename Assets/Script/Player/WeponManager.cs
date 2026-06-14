@@ -35,7 +35,7 @@ public class WeponManager : MonoBehaviour
             return;
         }
 
-        _subWeapons[_mainIndex].OnFire(context);
+        _subWeapons[_subIndex].OnFire(context);
     }
 
     /// <summary>

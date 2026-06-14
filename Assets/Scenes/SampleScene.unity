@@ -773,6 +773,7 @@ GameObject:
   - component: {fileID: 1354341640}
   - component: {fileID: 1354341641}
   - component: {fileID: 1354341642}
+  - component: {fileID: 1354341643}
   m_Layer: 7
   m_Name: Player
   m_TagString: Untagged
@@ -992,9 +993,9 @@ MonoBehaviour:
     m_ActionName: 'Player/Jump[/Keyboard/space]'
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1354341640}
-        m_TargetAssemblyTypeName: VipreWepon, Assembly-CSharp
-        m_MethodName: OnFire
+      - m_Target: {fileID: 1354341643}
+        m_TargetAssemblyTypeName: WeponManager, Assembly-CSharp
+        m_MethodName: OnMainFire
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1008,9 +1009,9 @@ MonoBehaviour:
     m_ActionName: 'Player/Fire[/Mouse/leftButton]'
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1354341640}
-        m_TargetAssemblyTypeName: VipreWepon, Assembly-CSharp
-        m_MethodName: OnViper1
+      - m_Target: {fileID: 1354341643}
+        m_TargetAssemblyTypeName: WeponManager, Assembly-CSharp
+        m_MethodName: OnSubFire
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1020,13 +1021,13 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_ActionId: 78d3c949-5cac-4a37-8191-40bdbd6c5c4e
-    m_ActionName: 'Player/Viper1[/Keyboard/1]'
+    m_ActionId: a9f79cd9-18f0-4943-8ff9-3edf51a86c1a
+    m_ActionName: 'Player/SubFire[/Mouse/rightButton]'
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1354341640}
-        m_TargetAssemblyTypeName: VipreWepon, Assembly-CSharp
-        m_MethodName: OnViper2
+      - m_Target: {fileID: 1354341643}
+        m_TargetAssemblyTypeName: WeponManager, Assembly-CSharp
+        m_MethodName: OnNextMainWeapon
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1036,13 +1037,13 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_ActionId: 44e89603-9821-4d65-9f29-b8e5a198dd39
-    m_ActionName: 'Player/Viper2[/Keyboard/2]'
+    m_ActionId: eec9bffb-31a1-4ca4-af55-6d3f41e3e50d
+    m_ActionName: 'Player/MainWeponChange[/Keyboard/q]'
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1354341640}
-        m_TargetAssemblyTypeName: VipreWepon, Assembly-CSharp
-        m_MethodName: OnViper3
+      - m_Target: {fileID: 1354341643}
+        m_TargetAssemblyTypeName: WeponManager, Assembly-CSharp
+        m_MethodName: OnNextSubWeapon
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1052,104 +1053,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_ActionId: 8e490ace-bedd-4f0a-9fca-d9c875837c31
-    m_ActionName: 'Player/Viper3[/Keyboard/3]'
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1354341641}
-        m_TargetAssemblyTypeName: AsteroidWepon, Assembly-CSharp
-        m_MethodName: OnFire
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: c1080f2f-678d-4160-83ab-c0efb72030fc
-    m_ActionName: 'Player/Asteroid[/Keyboard/6]'
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1354341639}
-        m_TargetAssemblyTypeName: MeteoraWepon, Assembly-CSharp
-        m_MethodName: OnFire
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 546e8681-7483-422e-b459-2230d2f1bcd4
-    m_ActionName: 'Player/Meteora[/Keyboard/7]'
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1354341638}
-        m_TargetAssemblyTypeName: HoundWepon, Assembly-CSharp
-        m_MethodName: OnFire
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: bef8aa33-2894-44ec-9a3d-55dfb133cbcd
-    m_ActionName: 'Player/Hund[/Keyboard/8]'
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1354341640}
-        m_TargetAssemblyTypeName: VipreWepon, Assembly-CSharp
-        m_MethodName: OnFire
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 2d0bdcbb-149e-4936-95a3-3b5f19400da7
-    m_ActionName: 'Player/Viper[/Keyboard/9]'
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1354341642}
-        m_TargetAssemblyTypeName: Shield, Assembly-CSharp
-        m_MethodName: OnFrontShield
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: e040b345-454d-45a8-9d2a-3bcdae4ba9af
-    m_ActionName: 'Player/Shield[/Keyboard/4]'
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1354341642}
-        m_TargetAssemblyTypeName: Shield, Assembly-CSharp
-        m_MethodName: OnFullShield
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 7da44a94-c9a8-4846-b842-3a0771f590fc
-    m_ActionName: 'Player/FullShield[/Keyboard/5]'
+    m_ActionId: aecdd9b8-210d-4f70-9e46-6fd5f148c5c4
+    m_ActionName: Player/SubWeponChange
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -1290,6 +1195,23 @@ MonoBehaviour:
   _frontShieldCost: 5
   _fullShieldCost: 10
   _frontShieldPoint: {fileID: 687247960}
+--- !u!114 &1354341643
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1354341627}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c0862a8d864898459829eae70effd61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WeponManager
+  _mainWeapons:
+  - {fileID: 1354341641}
+  - {fileID: 1354341640}
+  _subWeapons:
+  - {fileID: 1354341642}
 --- !u!1 &1731229500
 GameObject:
   m_ObjectHideFlags: 0

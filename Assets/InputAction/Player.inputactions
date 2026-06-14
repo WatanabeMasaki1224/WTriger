@@ -34,7 +34,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Fire",
+                    "name": "MainFire",
                     "type": "Button",
                     "id": "24b82ba7-56fd-4b53-9c68-5daacd42dd94",
                     "expectedControlType": "",
@@ -43,81 +43,27 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Viper1",
+                    "name": "SubFire",
                     "type": "Button",
-                    "id": "78d3c949-5cac-4a37-8191-40bdbd6c5c4e",
+                    "id": "a9f79cd9-18f0-4943-8ff9-3edf51a86c1a",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Viper2",
+                    "name": "MainWeponChange",
                     "type": "Button",
-                    "id": "44e89603-9821-4d65-9f29-b8e5a198dd39",
+                    "id": "eec9bffb-31a1-4ca4-af55-6d3f41e3e50d",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Viper3",
+                    "name": "SubWeponChange",
                     "type": "Button",
-                    "id": "8e490ace-bedd-4f0a-9fca-d9c875837c31",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "Asteroid",
-                    "type": "Button",
-                    "id": "c1080f2f-678d-4160-83ab-c0efb72030fc",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "Meteora",
-                    "type": "Button",
-                    "id": "546e8681-7483-422e-b459-2230d2f1bcd4",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "Hund",
-                    "type": "Button",
-                    "id": "bef8aa33-2894-44ec-9a3d-55dfb133cbcd",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "Viper",
-                    "type": "Button",
-                    "id": "2d0bdcbb-149e-4936-95a3-3b5f19400da7",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "FrontSheld",
-                    "type": "Button",
-                    "id": "e040b345-454d-45a8-9d2a-3bcdae4ba9af",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "FullShield",
-                    "type": "Button",
-                    "id": "7da44a94-c9a8-4846-b842-3a0771f590fc",
+                    "id": "aecdd9b8-210d-4f70-9e46-6fd5f148c5c4",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -209,106 +155,40 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Fire",
+                    "action": "MainFire",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "ab63f02a-6f00-4cfc-9e94-924be563f148",
-                    "path": "<Keyboard>/1",
+                    "id": "bbf62cf7-cd97-4f6f-911e-8821ebca38ab",
+                    "path": "<Mouse>/rightButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Viper1",
+                    "action": "SubFire",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "b579f43e-f7ee-420f-ae7f-48c5da5869b9",
-                    "path": "<Keyboard>/3",
+                    "id": "bc60e972-fc2e-4627-a446-0fd020fa90a6",
+                    "path": "<Keyboard>/q",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Viper3",
+                    "action": "MainWeponChange",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "e5a50179-22c0-4018-aca1-8e9233141a9a",
-                    "path": "<Keyboard>/2",
+                    "id": "857ff19f-4ab3-4fe3-a7c4-673ec1be847a",
+                    "path": "",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Viper2",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "0daf6752-0ca2-45e5-87fc-7309b93a5229",
-                    "path": "<Keyboard>/6",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Asteroid",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "595a5dc3-fbb9-4585-a226-9860acaf9d39",
-                    "path": "<Keyboard>/7",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Meteora",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "b77f6b86-e7e8-4594-b7f1-33a337748ad1",
-                    "path": "<Keyboard>/8",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Hund",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "a589a094-5755-4b1c-83e1-c8709f82ede8",
-                    "path": "<Keyboard>/9",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Viper",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "54861f07-2e78-441b-8051-d8b67a662a9e",
-                    "path": "<Keyboard>/4",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "FrontSheld",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "f0d8befb-97f3-4f32-872c-9dd5ef80da26",
-                    "path": "<Keyboard>/5",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "FullShield",
+                    "action": "SubWeponChange",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
