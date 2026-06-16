@@ -27,7 +27,7 @@ public class EnemyAsteroid : EnemyBase
 
     protected override void Move()
     {
-        if(_player != null)
+        if(_player == null)
         {
             return;
         }
@@ -46,7 +46,7 @@ public class EnemyAsteroid : EnemyBase
     /// </summary>
     private void Attack()
     {
-        if(_player != null)
+        if(_player == null)
         {
             return;
         }

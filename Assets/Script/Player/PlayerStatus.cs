@@ -26,4 +26,25 @@ public class PlayerStatus : MonoBehaviour
         Debug.Log($"残りトリオン：{_currentTrion}");
         return true;
     }
+
+    /// <summary>
+    /// ダメージを受ける
+    /// </summary>
+    public void TakeDamage(float damage)
+    {
+        _currentTrion -= damage;
+
+        Debug.Log($"被弾 トリオン残量：{_currentTrion}");
+
+        if (_currentTrion <= 0)
+        {
+            Die();
+        }
+    }
+
+
+    private void Die()
+    {
+        Debug.Log("トリオン切れ");
+    }
 }

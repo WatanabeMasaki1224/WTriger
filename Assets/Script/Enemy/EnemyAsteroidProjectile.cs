@@ -9,7 +9,7 @@ public class EnemyAsteroidProjectile : ProjectileBase
         if (other.TryGetComponent<ProjectileBase>(out _))
             return;
 
-        if (other.TryGetComponent<PlayerController>(out var player))
+        if (other.TryGetComponent<PlayerStatus>(out var player))
         {
             player.TakeDamage(_damage);
             Destroy(gameObject);

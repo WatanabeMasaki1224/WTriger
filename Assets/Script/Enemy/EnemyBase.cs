@@ -6,7 +6,7 @@ public class EnemyBase : MonoBehaviour
 
     protected virtual void Update()
     {
-        Move();
+
     }
 
     protected virtual void Move()
@@ -19,7 +19,7 @@ public class EnemyBase : MonoBehaviour
         _hp -= damage;
         Debug.Log($"EnemyDmage:{damage} ");
 
-        if( _hp <= 0 )
+        if (_hp <= 0)
         {
             Die();
         }

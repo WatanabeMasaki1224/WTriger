@@ -502,6 +502,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1354341633}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &718584453
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 718584454}
+  m_Layer: 10
+  m_Name: EnemyFirePoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &718584454
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 718584453}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.85, y: 0, z: -1.54}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1035283011}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
@@ -624,7 +655,6 @@ GameObject:
   - component: {fileID: 1035283010}
   - component: {fileID: 1035283009}
   - component: {fileID: 1035283008}
-  - component: {fileID: 1035283007}
   - component: {fileID: 1035283012}
   m_Layer: 10
   m_Name: Enemy
@@ -633,19 +663,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1035283007
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1035283006}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a2b2387f411d24447bd3006ced4847a5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnemyBase
-  _hp: 1000
 --- !u!65 &1035283008
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -736,7 +753,8 @@ Transform:
   m_LocalPosition: {x: 0.63372, y: -0.45, z: 9.87}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 718584454}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1035283012
@@ -748,10 +766,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 1035283006}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d151a1a903774dd4ebac490f9f9e1649, type: 3}
+  m_Script: {fileID: 11500000, guid: f7f5effd3501a3145874e5a1069e2e80, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnemyMoveTest
-  moveSpeed: 3
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyAsteroid
+  _hp: 100
+  _moveSpeed: 3
+  _stopDistance: 5
+  _bulletPrefab: {fileID: 5690998238511184065, guid: cd2d8b67c9975ed4ea233097ed2f09d9, type: 3}
+  _firePoint: {fileID: 718584454}
+  _attackCooldown: 2
 --- !u!1 &1354341627
 GameObject:
   m_ObjectHideFlags: 0
@@ -776,7 +799,7 @@ GameObject:
   - component: {fileID: 1354341643}
   m_Layer: 7
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
