@@ -3,6 +3,7 @@ using UnityEngine;
 public class EnemyBase : MonoBehaviour
 {
     [SerializeField] protected float _hp = 100f;
+    private EnemySpawner _spawner;
 
     protected virtual void Update()
     {
@@ -27,6 +28,16 @@ public class EnemyBase : MonoBehaviour
 
     protected virtual void Die()
     {
+        if (_spawner != null)
+        {
+            _spawner.EnemyDead(this);
+        }
+
         Destroy(gameObject);
+    }
+
+    public void SetSpawner(EnemySpawner spawner)
+    {
+        _spawner = spawner;
     }
 }

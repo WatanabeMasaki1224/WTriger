@@ -61,15 +61,9 @@ public class EnemySpawner : MonoBehaviour
         // 使用可能なスポーン地点を探す
         foreach (Transform point in _spawnPoints)
         {
-            Collider[] hit =
-                Physics.OverlapSphere(
-                    point.position,
-                    _checkRadius
-                );
-
+            Collider[] hit =Physics.OverlapSphere(point.position,_checkRadius);
 
             bool canSpawn = true;
-
 
             foreach (Collider col in hit)
             {
@@ -94,28 +88,38 @@ public class EnemySpawner : MonoBehaviour
             return;
         }
 
-
         // ランダム地点
-        Transform spawnPoint =
-            candidates[Random.Range(0, candidates.Count)];
-
-
+        Transform spawnPoint =candidates[Random.Range(0, candidates.Count)];
         // ランダム敵
-        EnemyBase prefab =
-            _enemyPrefabs[
-                Random.Range(0, _enemyPrefabs.Length)
-            ];
-
-
-        EnemyBase enemy =
-            Instantiate(
-                prefab,
-                spawnPoint.position,
-                Quaternion.identity
-            );
-
-
+        EnemyBase prefab =_enemyPrefabs[Random.Range(0, _enemyPrefabs.Length)];
+        //敵出現
+        EnemyBase enemy =Instantiate(prefab,spawnPoint.position,Quaternion.identity);
         _currentEnemies.Add(enemy);
+        // 死亡通知用
+        enemy.SetSpawner(this);
+    }
 
+    /// <summary>
+    /// 敵死亡時に呼ばれる
+    /// </summary>
+    public void EnemyDead(EnemyBase enemy)
+    {
+        _currentEnemies.Remove(enemy);
+
+
+        _killCount++;
+
+
+        if (_killCount >= _needKillCount)
+        {
+            SpawnBoss();
+        }
+    }
+
+    private void SpawnBoss()
+    {
+        _bossPhase = true;
+        Instantiate(_bossPrefab,_bossSpawnPoint.position,Quaternion.identity);
+        Debug.Log("Boss Start");
     }
 }

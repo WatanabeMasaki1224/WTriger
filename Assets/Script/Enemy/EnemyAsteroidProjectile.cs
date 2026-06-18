@@ -4,6 +4,7 @@ public class EnemyAsteroidProjectile : ProjectileBase
 {
     protected override void OnTriggerEnter(Collider other)
     {
+        Debug.Log(other.name);
         if (other.gameObject == gameObject) return;
 
         if (other.TryGetComponent<ProjectileBase>(out _))
