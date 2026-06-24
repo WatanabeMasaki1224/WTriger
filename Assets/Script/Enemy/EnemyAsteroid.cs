@@ -1,4 +1,4 @@
-using UnityEditor;
+
 using UnityEngine;
 
 public class EnemyAsteroid : EnemyBase
@@ -12,11 +12,13 @@ public class EnemyAsteroid : EnemyBase
     [SerializeField] private float _attackCooldown = 2f;
 
     private Transform _player;
+    private Transform _aimPoint;
     private float _attackTimer;
 
     private void Start()
     {
         _player = GameObject.FindGameObjectWithTag("Player").transform;
+        _aimPoint = _player.Find("EnemyAimPoint");
     }
 
     protected override void Update()
@@ -70,7 +72,13 @@ public class EnemyAsteroid : EnemyBase
     /// </summary>
     private void Fire()
     {
-        Vector3 dir = (_player.position - _firePoint.position).normalized;
+        Debug.DrawLine(
+      _firePoint.position,
+      _aimPoint.position,
+      Color.red,
+      2f
+  );
+        Vector3 dir = (_aimPoint.position - _firePoint.position).normalized;
         GameObject bullet = Instantiate(_bulletPrefab, _firePoint.position, Quaternion.identity);
         //
         bullet.GetComponent<EnemyAsteroidProjectile>().Initialize(dir);
