@@ -157,6 +157,7 @@ MonoBehaviour:
   _speed: 20
   _lifeTime: 5
   _damage: 20
+  _hitEffectPrefab: {fileID: 6975906353946102103, guid: 190b40d46b6ddfb48bf895185734eb78, type: 3}
   _pattern: 0
   _turnSpeed: 10
   _curveDistance: 10

@@ -7,6 +7,8 @@ public class ProjectileBase : MonoBehaviour
     [SerializeField] protected float _speed = 20f;
     [SerializeField] protected float _lifeTime = 5f;
     [SerializeField] protected float _damage = 20f;
+    [Header("Effects")]
+    [SerializeField] private GameObject _hitEffectPrefab;
 
     protected Vector3 _moveDirection;
     protected bool _canMove;
@@ -50,6 +52,12 @@ public class ProjectileBase : MonoBehaviour
 
         if (other.TryGetComponent<ProjectileBase>(out _))
             return;
+
+        // 着弾エフェクト生成
+        if (_hitEffectPrefab != null)
+        {
+            Instantiate(_hitEffectPrefab, transform.position,Quaternion.identity);
+        }
 
         if (other.TryGetComponent<EnemyBase>(out var enemy))
         {

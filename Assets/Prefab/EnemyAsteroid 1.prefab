@@ -126,7 +126,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7f5effd3501a3145874e5a1069e2e80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyAsteroid
-  _hp: 100
+  _hp: 1000
   _moveSpeed: 3
   _stopDistance: 10
   _bulletPrefab: {fileID: 5690998238511184065, guid: cd2d8b67c9975ed4ea233097ed2f09d9, type: 3}

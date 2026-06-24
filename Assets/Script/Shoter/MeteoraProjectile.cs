@@ -24,10 +24,9 @@ public class MeteoraProjectile : ProjectileBase
             if (hit.TryGetComponent<EnemyBase>(out var enemy))
             {
                 enemy.TakeDamage(_explosionDamage);
-                Destroy(gameObject);
+                
             }
         }
-
-        
+        Destroy(gameObject);
     }
 }
