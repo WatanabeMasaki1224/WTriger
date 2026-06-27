@@ -21,10 +21,12 @@ public class ShooterWeponBase : MonoBehaviour
 
     protected PlayerStatus _playerStatus;
     protected bool _isShooting;
+    protected Animator _animator;
 
     protected virtual void Start()
     {
         _playerStatus = GetComponent<PlayerStatus>();
+        _animator = GetComponentInChildren<Animator>();
     }
 
     /// <summary>
@@ -101,6 +103,7 @@ public class ShooterWeponBase : MonoBehaviour
     /// <returns></returns>
     protected virtual IEnumerator FireProjectile(ProjectileBase projectileBase)
     {
+        _animator.SetTrigger("Shoot");
         yield return new WaitForSeconds(0.2f);
 
         projectileBase.Initialize(_cameraTransform.forward);

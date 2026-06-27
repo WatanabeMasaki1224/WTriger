@@ -31,7 +31,8 @@ public class AsteroidWepon : ShooterWeponBase
     /// <returns></returns>
     private IEnumerator SetAsteroidDirection(AsteroidProjectile projectile, Vector3 dir)
     {
-        yield return new WaitForSeconds(0.2f);
+        _animator.SetTrigger("Shoot");
+        yield return new WaitForSeconds(0.5f);
 
         projectile.Initialize(dir);
     }

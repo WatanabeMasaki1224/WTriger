@@ -4,6 +4,7 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     CharacterController _characterController;
+    private Animator _animator;
     Vector2 _moveInput;
     Vector2 _lookInput;
     float _verticalVelocity;
@@ -16,6 +17,7 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         _characterController = GetComponent<CharacterController>();
+        _animator = GetComponent<Animator>();
         //マウスカーソルを画面中に固定
         Cursor.lockState = CursorLockMode.Locked;
     }
@@ -41,6 +43,8 @@ public class PlayerController : MonoBehaviour
         if (context.performed && _characterController.isGrounded)
         {
             _verticalVelocity = _jumpPower;
+            _animator.SetTrigger("Jump");
+            _animator.SetBool("Grounded",_characterController.isGrounded);
         }
     }
 
@@ -62,6 +66,10 @@ public class PlayerController : MonoBehaviour
 
         _verticalVelocity += _gravity * Time.deltaTime;
         _characterController.Move(Vector3.up * _verticalVelocity * Time.deltaTime);
+        float speed = _moveInput.magnitude;
+        _animator.SetFloat("Speed", speed);
+        _animator.SetFloat("MoveX", _moveInput.x);
+        _animator.SetFloat("MoveY", _moveInput.y);
     }
 
     void Look()
