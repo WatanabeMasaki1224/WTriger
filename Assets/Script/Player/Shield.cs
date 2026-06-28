@@ -114,4 +114,21 @@ public class Shield : SubWeponBase
             _currentShield = null;
         }
     }
+
+    /// <summary>
+    /// シールド切り替え
+    /// </summary>
+    public void ChangeShield()
+    {
+        if (_currentShieldType == ShieldType.Front)
+        {
+            _currentShieldType = ShieldType.Full;
+        }
+        else
+        {
+            _currentShieldType = ShieldType.Front;
+        }
+
+        Debug.Log($"現在のシールド : {_currentShieldType}");
+    }
 }

@@ -21,6 +21,7 @@ public class ShooterWeponBase : MonoBehaviour
 
     protected PlayerStatus _playerStatus;
     protected bool _isShooting;
+    public bool IsShooting => _isShooting;
     protected Animator _animator;
 
     protected virtual void Start()
@@ -69,6 +70,8 @@ public class ShooterWeponBase : MonoBehaviour
         // ï™äÑÅïî≠éÀ
         SplitAndFire(bigCube);
 
+        yield return new WaitForSeconds(0.5f);
+
         _isShooting = false;
     }
 
@@ -91,7 +94,7 @@ public class ShooterWeponBase : MonoBehaviour
             Vector3 spawnPosition = bigCube.transform.position + offsets[i];
             CreateProjectile(spawnPosition);
         }
-
+        _animator.SetTrigger("Shoot");
         // ëÂã çÌèú
         Destroy(bigCube);
     }
@@ -103,7 +106,6 @@ public class ShooterWeponBase : MonoBehaviour
     /// <returns></returns>
     protected virtual IEnumerator FireProjectile(ProjectileBase projectileBase)
     {
-        _animator.SetTrigger("Shoot");
         yield return new WaitForSeconds(0.2f);
 
         projectileBase.Initialize(_cameraTransform.forward);

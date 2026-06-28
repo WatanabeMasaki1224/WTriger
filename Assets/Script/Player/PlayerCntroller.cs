@@ -13,11 +13,13 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float _gravity = -9.8f;
     [SerializeField] Transform _cameraTransform;
     float _cameraPitch = 0f;
+    private ShooterWeponBase _shooter;
 
     private void Start()
     {
         _characterController = GetComponent<CharacterController>();
         _animator = GetComponent<Animator>();
+        _shooter = GetComponent<ShooterWeponBase>();
         //マウスカーソルを画面中に固定
         Cursor.lockState = CursorLockMode.Locked;
     }
@@ -40,6 +42,11 @@ public class PlayerController : MonoBehaviour
 
     public void OnJump(InputAction.CallbackContext context)
     {
+        if (_shooter.IsShooting)
+        {
+            return;
+        }
+
         if (context.performed && _characterController.isGrounded)
         {
             _verticalVelocity = _jumpPower;
@@ -50,6 +57,11 @@ public class PlayerController : MonoBehaviour
 
     void Move()
     {
+        if (_shooter.IsShooting)
+        {
+            return;
+        }
+
         Vector3 forward = _cameraTransform.forward;
         Vector3 right = _cameraTransform.right;
         forward.y = 0f;
