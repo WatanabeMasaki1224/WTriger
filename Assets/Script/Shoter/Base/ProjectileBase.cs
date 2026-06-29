@@ -48,6 +48,13 @@ public class ProjectileBase : MonoBehaviour
     /// <param name="other"></param>
     protected virtual void OnTriggerEnter(Collider other)
     {
+
+        if (other.TryGetComponent<ProjectileBase>(out _))
+        {
+            Debug.Log("Projectile‚¾‚Á‚½");
+            return;
+        }
+        Debug.Log($"Hit:{other.name}");
         if (other.gameObject == gameObject) return;
 
         if (other.TryGetComponent<ProjectileBase>(out _))
