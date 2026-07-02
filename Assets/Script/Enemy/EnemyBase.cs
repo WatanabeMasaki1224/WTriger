@@ -4,6 +4,12 @@ public class EnemyBase : MonoBehaviour
 {
     [SerializeField] protected float _hp = 100f;
     private EnemySpawner _spawner;
+    protected float _maxHP;
+
+    protected virtual void Start()
+    {
+        _maxHP = _hp;
+    }
 
     protected virtual void Update()
     {

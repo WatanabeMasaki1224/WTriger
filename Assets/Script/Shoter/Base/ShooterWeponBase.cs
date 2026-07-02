@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -12,7 +13,7 @@ public class ShooterWeponBase : MonoBehaviour
     [Header("ステータス")]
     [SerializeField] protected int _cubeCount = 4;
     [SerializeField] protected float _cubeDelay = 0.3f;
-    [SerializeField] protected float _cubeSpread = 0.3f;
+    [SerializeField] protected float _cubeSpread = 0.5f;
     [SerializeField] protected float _trionCost = 10f;
     [Header("ロックオン")]
     [SerializeField] protected float _lockOnRange = 15f;
@@ -23,6 +24,8 @@ public class ShooterWeponBase : MonoBehaviour
     protected bool _isShooting;
     public bool IsShooting => _isShooting;
     protected Animator _animator;
+
+    public static event Action OnPlayerShot;
 
     protected virtual void Start()
     {
@@ -45,6 +48,7 @@ public class ShooterWeponBase : MonoBehaviour
         {
             return;
         }
+        _animator.SetTrigger("BigCube");
 
         StartCoroutine(ShootRoutine());
     }
@@ -56,7 +60,7 @@ public class ShooterWeponBase : MonoBehaviour
     protected virtual IEnumerator ShootRoutine()
     {
         _isShooting = true;
-
+        yield return new WaitForSeconds(0.3f);
         // 大玉生成
         GameObject bigCube = Instantiate(
             _bigCubePrefab,
@@ -94,6 +98,9 @@ public class ShooterWeponBase : MonoBehaviour
             Vector3 spawnPosition = bigCube.transform.position + offsets[i];
             CreateProjectile(spawnPosition);
         }
+
+        // ★プレイヤーが攻撃したことを通知
+        OnPlayerShot?.Invoke();
         _animator.SetTrigger("Shoot");
         // 大玉削除
         Destroy(bigCube);
