@@ -1,5 +1,7 @@
 using UnityEngine;
 using UnityEngine.Timeline;
+using System;
+using System.Collections;
 
 public class EnemyBoss : EnemyBase
 {
@@ -28,6 +30,9 @@ public class EnemyBoss : EnemyBase
     [SerializeField] private Transform _shieldPoint;
     [SerializeField] private float _shieldDuration = 3f;
     [SerializeField] private float _shieldCooldown = 5f;
+    [Header("BigCube")]
+    [SerializeField] private GameObject _bigCubePrefab;
+    [SerializeField] private float _bigCubeDelay = 0.3f;
 
     [Header("Distance")]
     [SerializeField] private float _attackRange = 20f;
@@ -43,6 +48,7 @@ public class EnemyBoss : EnemyBase
     private float _returnTimer;
     private BossState _state;
     private CharacterController _characterController;
+    private Animator _animator;
 
     private GameObject _shield;
     private bool _canShield = true;
@@ -58,6 +64,7 @@ public class EnemyBoss : EnemyBase
         _characterController = GetComponent<CharacterController>();
         _maxHP = _hp;
         ShooterWeponBase.OnPlayerShot += OnPlayerShot;
+        _animator = GetComponent<Animator>();
     }
 
     protected override void Update()
@@ -67,8 +74,11 @@ public class EnemyBoss : EnemyBase
             return;
         }
 
-        LookPlayer();
         CheckPhase();
+        if (_state != BossState.Return)
+        {
+            LookPlayer();
+        }
 
         if (_state == BossState.Shield)
         {
@@ -86,6 +96,11 @@ public class EnemyBoss : EnemyBase
     /// </summary>
     private void LookPlayer()
     {
+        if (_state == BossState.Return)
+        {
+            return;
+        }
+
         Vector3 dir = _player.position - transform.position;
         dir.y = 0;
 
@@ -141,6 +156,8 @@ public class EnemyBoss : EnemyBase
         {
             case BossState.Chase:
                 {
+                    _animator.SetBool("Move", true);
+
                     Vector3 dir = (_player.position - transform.position).normalized;
                     _characterController.Move(dir * _moveSpeed * Time.deltaTime);
                     break;
@@ -148,13 +165,27 @@ public class EnemyBoss : EnemyBase
 
             case BossState.Return:
                 {
+                    _animator.SetBool("Move", true);
                     Vector3 dir = (_startPosition - transform.position).normalized;
+
+                    // 帰還中は初期位置を見る
+                    if (dir != Vector3.zero)
+                    {
+                        transform.rotation = Quaternion.LookRotation(dir);
+                    }
+
                     _characterController.Move(dir * _moveSpeed * Time.deltaTime);
 
                     if (Vector3.Distance(transform.position, _startPosition) < 0.2f)
                     {
                         _state = BossState.idle;
                     }
+                    break;
+                }
+
+            default:
+                {
+                    _animator.SetBool("Move", false);
                     break;
                 }
         }
@@ -184,7 +215,7 @@ public class EnemyBoss : EnemyBase
         // 前半
         if (!_phase2)
         {
-            FireAsteroid();
+            StartCoroutine(ShotRoutine(FireAsteroid));
             return;
         }
 
@@ -192,30 +223,47 @@ public class EnemyBoss : EnemyBase
 
         if (distance >= _phase2Distance)
         {
-            // 10m～20m
-
-            if (Random.value < 0.7f)
+            if (UnityEngine.Random.value < 0.7f)
             {
-                FireHound();
+                StartCoroutine(ShotRoutine(FireHound));
             }
             else
             {
-                FireViper();
+                StartCoroutine(ShotRoutine(FireViper));
             }
         }
         else
         {
-            // 10m未満
-
-            if (Random.value < 0.7f)
+            if (UnityEngine.Random.value < 0.7f)
             {
-                FireAsteroid();
+                StartCoroutine(ShotRoutine(FireAsteroid));
             }
             else
             {
-                FireViper();
+                StartCoroutine(ShotRoutine(FireViper));
             }
         }
+    }
+
+    private IEnumerator ShotRoutine(Action fireAction)
+    {
+        _animator.SetTrigger("BigCube");
+
+        // 手を前に出すまで待つ
+        yield return new WaitForSeconds(0.3f);
+
+        GameObject bigCube = Instantiate(
+            _bigCubePrefab,
+            _firePoint.position,
+            Quaternion.identity);
+
+        // 大玉を保持
+        yield return new WaitForSeconds(_bigCubeDelay);
+
+        Destroy(bigCube);
+
+        // 弾を発射
+        fireAction?.Invoke();
     }
 
     private void FireAsteroid()

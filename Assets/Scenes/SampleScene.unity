@@ -668,9 +668,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 376707126}
     - target: {fileID: 1015442186014547107, guid: 14c31b5b28830e44583c54e8b57f75ff, type: 3}
+      propertyPath: _bigCubeDelay
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1015442186014547107, guid: 14c31b5b28830e44583c54e8b57f75ff, type: 3}
       propertyPath: _shieldPrefab
       value: 
       objectReference: {fileID: 3877288467086409123, guid: 03f8852dd9ec1bb45b056a8e58418af9, type: 3}
+    - target: {fileID: 1015442186014547107, guid: 14c31b5b28830e44583c54e8b57f75ff, type: 3}
+      propertyPath: _bigCubePrefab
+      value: 
+      objectReference: {fileID: 5880552311611982871, guid: 2a094f9deea854242ba295e445b20f2a, type: 3}
     - target: {fileID: 1015442186014547107, guid: 14c31b5b28830e44583c54e8b57f75ff, type: 3}
       propertyPath: _chaseDistance
       value: 8
@@ -679,6 +687,14 @@ PrefabInstance:
       propertyPath: _attackInterval
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 2445937068406639483, guid: 14c31b5b28830e44583c54e8b57f75ff, type: 3}
+      propertyPath: m_Avatar
+      value: 
+      objectReference: {fileID: 9000000, guid: 82a2914d8f86c62488456950c8330e38, type: 3}
+    - target: {fileID: 2445937068406639483, guid: 14c31b5b28830e44583c54e8b57f75ff, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: af28cb387f7e71c468e88280aaf93369, type: 2}
     - target: {fileID: 7652885350329552867, guid: 14c31b5b28830e44583c54e8b57f75ff, type: 3}
       propertyPath: m_LocalPosition.x
       value: -2.0573251
@@ -725,7 +741,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8243802547090695774, guid: 14c31b5b28830e44583c54e8b57f75ff, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -774,6 +790,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1856541495033238282, guid: dcf6b0d704939c647b2c3e3ce23a183b, type: 3}
+      propertyPath: _cubeDelay
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1856541495033238282, guid: dcf6b0d704939c647b2c3e3ce23a183b, type: 3}
       propertyPath: _lookOnAngle
       value: 120
       objectReference: {fileID: 0}
@@ -784,6 +804,10 @@ PrefabInstance:
     - target: {fileID: 6329093984931089985, guid: dcf6b0d704939c647b2c3e3ce23a183b, type: 3}
       propertyPath: _lookOnAngle
       value: 120
+      objectReference: {fileID: 0}
+    - target: {fileID: 6957235708543249153, guid: dcf6b0d704939c647b2c3e3ce23a183b, type: 3}
+      propertyPath: _cubeDelay
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 6957235708543249153, guid: dcf6b0d704939c647b2c3e3ce23a183b, type: 3}
       propertyPath: _lookOnAngle
