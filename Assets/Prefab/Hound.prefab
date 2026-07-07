@@ -160,7 +160,7 @@ MonoBehaviour:
   _hitEffectPrefab: {fileID: 6975906353946102103, guid: 190b40d46b6ddfb48bf895185734eb78, type: 3}
   _turnSpeed: 100
   _forwardWeight: 1
-  _curveDistance: 2
+  _curveDistance: 3
 --- !u!96 &8101480280629283326
 TrailRenderer:
   serializedVersion: 4

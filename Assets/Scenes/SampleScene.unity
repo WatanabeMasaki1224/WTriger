@@ -657,11 +657,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1015442186014547107, guid: 14c31b5b28830e44583c54e8b57f75ff, type: 3}
       propertyPath: _hp
-      value: 300
+      value: 1000
       objectReference: {fileID: 0}
     - target: {fileID: 1015442186014547107, guid: 14c31b5b28830e44583c54e8b57f75ff, type: 3}
       propertyPath: _attackRange
-      value: 15
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 1015442186014547107, guid: 14c31b5b28830e44583c54e8b57f75ff, type: 3}
       propertyPath: _shieldPoint
@@ -686,6 +686,10 @@ PrefabInstance:
     - target: {fileID: 1015442186014547107, guid: 14c31b5b28830e44583c54e8b57f75ff, type: 3}
       propertyPath: _attackInterval
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1015442186014547107, guid: 14c31b5b28830e44583c54e8b57f75ff, type: 3}
+      propertyPath: _markerDistance
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 2445937068406639483, guid: 14c31b5b28830e44583c54e8b57f75ff, type: 3}
       propertyPath: m_Avatar
