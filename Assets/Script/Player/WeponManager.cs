@@ -77,4 +77,14 @@ public class WeponManager : MonoBehaviour
 
         Debug.Log($"ÉTÉuïêäÌ : {_subWeapons[_subIndex].name}");
     }
+
+    public bool IsShooting
+    {
+        get
+        {
+            if(_mainWeapons.Length == 0)
+                return false;
+            return _mainWeapons[_mainIndex].IsShooting;
+        }
+    }
 }

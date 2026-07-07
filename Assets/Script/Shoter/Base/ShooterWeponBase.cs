@@ -113,7 +113,8 @@ public class ShooterWeponBase : MonoBehaviour
     /// <returns></returns>
     protected virtual IEnumerator FireProjectile(ProjectileBase projectileBase)
     {
-        yield return new WaitForSeconds(0.2f);
+        _animator.SetTrigger("Shoot");
+        yield return new WaitForSeconds(0.5f);
 
         projectileBase.Initialize(_cameraTransform.forward);
     }

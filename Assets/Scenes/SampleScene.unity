@@ -794,12 +794,20 @@ PrefabInstance:
       value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 1856541495033238282, guid: dcf6b0d704939c647b2c3e3ce23a183b, type: 3}
+      propertyPath: _lockOnRange
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 1856541495033238282, guid: dcf6b0d704939c647b2c3e3ce23a183b, type: 3}
       propertyPath: _lookOnAngle
       value: 120
       objectReference: {fileID: 0}
     - target: {fileID: 4008658825569139944, guid: dcf6b0d704939c647b2c3e3ce23a183b, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 6329093984931089985, guid: dcf6b0d704939c647b2c3e3ce23a183b, type: 3}
+      propertyPath: _lockOnRange
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 6329093984931089985, guid: dcf6b0d704939c647b2c3e3ce23a183b, type: 3}
       propertyPath: _lookOnAngle
@@ -810,8 +818,16 @@ PrefabInstance:
       value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 6957235708543249153, guid: dcf6b0d704939c647b2c3e3ce23a183b, type: 3}
+      propertyPath: _lockOnRange
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 6957235708543249153, guid: dcf6b0d704939c647b2c3e3ce23a183b, type: 3}
       propertyPath: _lookOnAngle
       value: 120
+      objectReference: {fileID: 0}
+    - target: {fileID: 7482944789701477167, guid: dcf6b0d704939c647b2c3e3ce23a183b, type: 3}
+      propertyPath: _lockOnRange
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 7482944789701477167, guid: dcf6b0d704939c647b2c3e3ce23a183b, type: 3}
       propertyPath: _lookOnAngle

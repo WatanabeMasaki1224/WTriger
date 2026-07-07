@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] Transform _cameraTransform;
     float _cameraPitch = 0f;
     private ShooterWeponBase _shooter;
+    private WeponManager _weponManager;
 
     private void Start()
     {
@@ -22,6 +23,7 @@ public class PlayerController : MonoBehaviour
         _shooter = GetComponent<ShooterWeponBase>();
         //マウスカーソルを画面中に固定
         Cursor.lockState = CursorLockMode.Locked;
+        _weponManager = GetComponent<WeponManager>();
     }
 
     private void Update()
@@ -57,7 +59,7 @@ public class PlayerController : MonoBehaviour
 
     void Move()
     {
-        if (_shooter.IsShooting)
+        if (_weponManager.IsShooting)
         {
             return;
         }

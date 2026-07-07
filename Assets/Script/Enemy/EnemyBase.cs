@@ -5,17 +5,21 @@ public class EnemyBase : MonoBehaviour
     [SerializeField] protected float _hp = 100f;
     private EnemySpawner _spawner;
     protected float _maxHP;
+    [SerializeField] private GameObject _lockOnMarker;
+    [SerializeField] private float _markerDistance = 15f;
+    protected Transform _player;
     public float HP => _hp;
     public float MaxHP => _maxHP;
 
     protected virtual void Start()
     {
         _maxHP = _hp;
+        _player = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
     protected virtual void Update()
     {
-
+        UpdateLockOnMarker();
     }
 
     protected virtual void Move()
@@ -47,5 +51,20 @@ public class EnemyBase : MonoBehaviour
     public void SetSpawner(EnemySpawner spawner)
     {
         _spawner = spawner;
+    }
+
+    protected virtual void UpdateLockOnMarker()
+    {
+        Debug.Log("UpdateLockOnMarker");
+        Debug.Log(_player);
+        Debug.Log(_lockOnMarker);
+        if (_player == null || _lockOnMarker == null)
+        {
+            return;
+        }
+        Debug.Log("‚Å‚È‚¨‚™");
+        float distance = Vector3.Distance(transform.position, _player.position);
+
+        _lockOnMarker.SetActive(distance <= _markerDistance);
     }
 }

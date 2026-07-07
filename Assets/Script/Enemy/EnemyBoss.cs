@@ -38,7 +38,6 @@ public class EnemyBoss : EnemyBase
     [SerializeField] private float _attackRange = 20f;
     [SerializeField] private float _phase2Distance = 10f;
 
-    private Transform _player;
     private Transform _aimPoint;
 
     private float _attackTimer;
@@ -65,6 +64,7 @@ public class EnemyBoss : EnemyBase
         _maxHP = _hp;
         ShooterWeponBase.OnPlayerShot += OnPlayerShot;
         _animator = GetComponent<Animator>();
+        _player = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
     protected override void Update()
@@ -89,6 +89,7 @@ public class EnemyBoss : EnemyBase
         Attack();
         Move();
         UpdateCooldown();
+        UpdateLockOnMarker();
     }
 
     /// <summary>
