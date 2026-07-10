@@ -19,6 +19,10 @@ public class ShooterWeponBase : MonoBehaviour
     [SerializeField] protected float _lockOnRange = 15f;
     [SerializeField] protected float _lookOnAngle = 60f;
     [SerializeField] protected LayerMask _enemyLayer;
+    [Header("SE")]
+    [SerializeField] private AudioSource _audioSource;
+    [SerializeField] private AudioClip _bigCubeSE;
+    [SerializeField] private AudioClip _shotSE;
 
     protected PlayerStatus _playerStatus;
     protected bool _isShooting;
@@ -68,6 +72,7 @@ public class ShooterWeponBase : MonoBehaviour
             Quaternion.identity
         );
 
+        _audioSource.PlayOneShot(_bigCubeSE);
         // 少し待機
         yield return new WaitForSeconds(_cubeDelay);
 
@@ -102,6 +107,7 @@ public class ShooterWeponBase : MonoBehaviour
         // ★プレイヤーが攻撃したことを通知
         OnPlayerShot?.Invoke();
         _animator.SetTrigger("Shoot");
+        _audioSource.PlayOneShot(_shotSE);
         // 大玉削除
         Destroy(bigCube);
     }

@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class EnemyBase : MonoBehaviour
 {
@@ -8,6 +9,8 @@ public class EnemyBase : MonoBehaviour
     [SerializeField] private GameObject _lockOnMarker;
     [SerializeField] private float _markerDistance = 15f;
     protected Transform _player;
+    [SerializeField] private AudioSource _audioSource;
+    [SerializeField] private AudioClip _hitSE;
     public float HP => _hp;
     public float MaxHP => _maxHP;
 
@@ -30,6 +33,7 @@ public class EnemyBase : MonoBehaviour
     public virtual void TakeDamage(float damage)
     {
         _hp -= damage;
+        _audioSource.PlayOneShot(_hitSE);
         Debug.Log($"EnemyDmage:{damage} ");
 
         if (_hp <= 0)

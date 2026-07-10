@@ -11,11 +11,10 @@ public class EnemyAsteroid : EnemyBase
     [SerializeField] private Transform _firePoint;
     [SerializeField] private float _attackCooldown = 2f;
 
-    private Transform _player;
     private Transform _aimPoint;
     private float _attackTimer;
 
-    private void Start()
+    protected override void Start()
     {
         _player = GameObject.FindGameObjectWithTag("Player").transform;
         _aimPoint = _player.Find("EnemyAimPoint");

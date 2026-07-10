@@ -11,10 +11,9 @@ public class EnemyShield : EnemyBase
     [SerializeField] private GameObject _shieldPrefab;
     [SerializeField] private Transform _shieldPoint;
 
-    private Transform _player;
     private GameObject _shield;
 
-    void Start()
+    protected override void Start()
     {
         _player = GameObject.FindGameObjectWithTag("Player").transform;
 

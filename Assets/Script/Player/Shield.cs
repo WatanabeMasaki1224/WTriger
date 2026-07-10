@@ -15,6 +15,7 @@ public class Shield : SubWeponBase
     [SerializeField] private float _frontShieldCost = 5f;
     [SerializeField] private float _fullShieldCost = 10f;
     [SerializeField] private Transform _frontShieldPoint;
+    [SerializeField] private Transform _fullShieldPoint;
     private bool _isShieldActive;
     private ShieldType _currentShieldType;
     private GameObject _currentShield;
@@ -56,7 +57,7 @@ public class Shield : SubWeponBase
     }
 
     /// <summary>
-    /// 前方シールド入力
+    /// シールド入力
     /// </summary>
     public override void OnFire(InputAction.CallbackContext context)
     {
@@ -89,7 +90,7 @@ public class Shield : SubWeponBase
 
             case ShieldType.Full:
                 shieldPrefab = _fullShieldPrefab;
-                spawnPoint = transform; // プレイヤー中心
+                spawnPoint = _fullShieldPoint; 
                 break;
         }
 
