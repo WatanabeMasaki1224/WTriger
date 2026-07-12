@@ -1408,6 +1408,18 @@ PrefabInstance:
       propertyPath: _lookOnAngle
       value: 120
       objectReference: {fileID: 0}
+    - target: {fileID: 6943185221378489704, guid: dcf6b0d704939c647b2c3e3ce23a183b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6943185221378489704, guid: dcf6b0d704939c647b2c3e3ce23a183b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6943185221378489704, guid: dcf6b0d704939c647b2c3e3ce23a183b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -12.5
+      objectReference: {fileID: 0}
     - target: {fileID: 6957235708543249153, guid: dcf6b0d704939c647b2c3e3ce23a183b, type: 3}
       propertyPath: _cubeDelay
       value: 0.3
@@ -1442,7 +1454,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8750249490425807783, guid: dcf6b0d704939c647b2c3e3ce23a183b, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 9.4
+      value: 18.4
       objectReference: {fileID: 0}
     - target: {fileID: 8750249490425807783, guid: dcf6b0d704939c647b2c3e3ce23a183b, type: 3}
       propertyPath: m_LocalRotation.w

@@ -90,6 +90,7 @@ public class EnemyBoss : EnemyBase
         Move();
         UpdateCooldown();
         UpdateLockOnMarker();
+        Debug.Log(_state);
     }
 
     /// <summary>
@@ -128,14 +129,24 @@ public class EnemyBoss : EnemyBase
         float playerDistance = Vector3.Distance(transform.position, _player.position);
         float startDistance = Vector3.Distance(transform.position,_startPosition);
 
+        // 初期位置にいてプレイヤーも遠いなら待機
+        if (playerDistance > _attackRange && startDistance < 0.2f)
+        {
+            _state = BossState.idle;
+            _returnTimer = 0f;
+            _animator.SetBool("Move", false);
+            return;
+        }
+
         //攻撃範囲外の場合
-        if(playerDistance > _attackRange)
+        if (playerDistance > _attackRange)
         {
             _returnTimer += Time.deltaTime;
 
             if( _returnTimer >= _returnTime)
             {
                 _state = BossState.Return;
+                _returnTimer = 0f;
             }
         }
         else
@@ -197,6 +208,11 @@ public class EnemyBoss : EnemyBase
     /// </summary>
     private void Attack()
     {
+        if (_state != BossState.Attack)
+        {
+            return;
+        }
+
         float distance = Vector3.Distance(transform.position, _player.position);
 
         if (distance > _attackRange)
@@ -261,10 +277,38 @@ public class EnemyBoss : EnemyBase
         // 大玉を保持
         yield return new WaitForSeconds(_bigCubeDelay);
 
-        Destroy(bigCube);
+        SplitAndFire(bigCube, fireAction);
 
-        // 弾を発射
-        fireAction?.Invoke();
+        Destroy(bigCube);
+    }
+
+    private void SplitAndFire(GameObject bigCube, Action fireAction)
+    {
+        Vector3[] offsets =
+        {
+        new Vector3(0, 0.3f, 0),
+        new Vector3(-0.3f, 0, 0),
+        new Vector3(0.3f, 0, 0),
+        new Vector3(0, -0.3f, 0)
+    };
+        _animator.SetTrigger("Shoot");
+        Vector3 originalPosition = _firePoint.position;
+
+        for (int i = 0; i < offsets.Length; i++)
+        {
+            _firePoint.position = bigCube.transform.position + offsets[i];
+            fireAction?.Invoke();
+        }
+
+        _firePoint.position = originalPosition;
+
+    }
+
+    private IEnumerator DelayFire(ProjectileBase projectile, Vector3 direction)
+    {
+        yield return new WaitForSeconds(0.5f);
+
+        projectile.Initialize(direction);
     }
 
     private void FireAsteroid()
@@ -276,7 +320,7 @@ public class EnemyBoss : EnemyBase
             _firePoint.position,
             Quaternion.LookRotation(dir));
 
-        bullet.Initialize(dir);
+        StartCoroutine(DelayFire(bullet, dir));
     }
 
     private void FireHound()
@@ -288,8 +332,8 @@ public class EnemyBoss : EnemyBase
             _firePoint.position,
             Quaternion.LookRotation(dir));
 
-        bullet.Initialize(dir);
         bullet.SetTarget(_aimPoint);
+        StartCoroutine(DelayFire(bullet, dir));
     }
 
     private void FireViper()
@@ -301,9 +345,9 @@ public class EnemyBoss : EnemyBase
             _firePoint.position,
             Quaternion.LookRotation(dir));
 
-        bullet.Initialize(dir);
         bullet.SetPattern(ViperProjectile.ViperPattern.SideCurve);
         bullet.SetTargetPosition(_aimPoint.position);
+        StartCoroutine(DelayFire(bullet, dir));
     }
 
     private void ActivateShield()

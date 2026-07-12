@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -34,12 +35,23 @@ public class EnemyBase : MonoBehaviour
     {
         _hp -= damage;
         _audioSource.PlayOneShot(_hitSE);
+        StartCoroutine(HitStop());
+
         Debug.Log($"EnemyDmage:{damage} ");
 
         if (_hp <= 0)
         {
             Die();
         }
+    }
+
+    private IEnumerator HitStop()
+    {
+        Time.timeScale = 0f;
+
+        yield return new WaitForSecondsRealtime(0.05f);
+
+        Time.timeScale = 1f;
     }
 
     protected virtual void Die()
@@ -59,14 +71,10 @@ public class EnemyBase : MonoBehaviour
 
     protected virtual void UpdateLockOnMarker()
     {
-        Debug.Log("UpdateLockOnMarker");
-        Debug.Log(_player);
-        Debug.Log(_lockOnMarker);
         if (_player == null || _lockOnMarker == null)
         {
             return;
         }
-        Debug.Log("‚Å‚È‚¨‚™");
         float distance = Vector3.Distance(transform.position, _player.position);
 
         _lockOnMarker.SetActive(distance <= _markerDistance);
