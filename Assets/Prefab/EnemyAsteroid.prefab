@@ -175,7 +175,7 @@ MonoBehaviour:
   _speed: 20
   _lifeTime: 5
   _damage: 20
-  _hitEffectPrefab: {fileID: 6975906353946102103, guid: 190b40d46b6ddfb48bf895185734eb78, type: 3}
+  _hitEffectPrefab: {fileID: 6975906353946102103, guid: 1976fbc5ce41a25488aea0798db2a843, type: 3}
   _shieldHitEffectPrefab: {fileID: 851134459474518137, guid: 51d012fab2f3be6468369202eb500636, type: 3}
 --- !u!96 &-1096916667444327464
 TrailRenderer:

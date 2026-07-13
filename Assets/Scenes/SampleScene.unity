@@ -1067,6 +1067,10 @@ PrefabInstance:
       value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 1015442186014547107, guid: 14c31b5b28830e44583c54e8b57f75ff, type: 3}
+      propertyPath: _houndPrefab
+      value: 
+      objectReference: {fileID: 350122202784057329, guid: d56ed29870a727f4491a0d9126d6ef49, type: 3}
+    - target: {fileID: 1015442186014547107, guid: 14c31b5b28830e44583c54e8b57f75ff, type: 3}
       propertyPath: _shieldPoint
       value: 
       objectReference: {fileID: 376707126}
