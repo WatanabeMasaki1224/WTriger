@@ -53,6 +53,7 @@ public class EnemyBoss : EnemyBase
     private bool _canShield = true;
     private float _shieldTimer;
     private float _cooldownTimer;
+    private bool _isAttacking;
 
     protected override void Start()
     {
@@ -264,6 +265,7 @@ public class EnemyBoss : EnemyBase
 
     private IEnumerator ShotRoutine(Action fireAction)
     {
+        _isAttacking = true;
         _animator.SetTrigger("BigCube");
 
         // éËÇëOÇ…èoÇ∑Ç‹Ç≈ë“Ç¬
@@ -280,6 +282,7 @@ public class EnemyBoss : EnemyBase
         SplitAndFire(bigCube, fireAction);
 
         Destroy(bigCube);
+       
     }
 
     private void SplitAndFire(GameObject bigCube, Action fireAction)
@@ -307,7 +310,7 @@ public class EnemyBoss : EnemyBase
     private IEnumerator DelayFire(ProjectileBase projectile, Vector3 direction)
     {
         yield return new WaitForSeconds(0.5f);
-
+        _isAttacking = false;
         projectile.Initialize(direction);
     }
 
@@ -357,8 +360,8 @@ public class EnemyBoss : EnemyBase
             return;
         }
 
+        _animator.SetBool("Move", false);
         _shield = Instantiate(_shieldPrefab, _shieldPoint.position, transform.rotation, transform);
-
         _state = BossState.Shield;
         _shieldTimer = 0f;
         _canShield = false;
@@ -409,6 +412,9 @@ public class EnemyBoss : EnemyBase
         {
             return;
         }
+
+        if (_isAttacking)     // Å©í«â¡
+            return;
 
         ActivateShield();
     }
