@@ -16,7 +16,7 @@ public class EnemyBoss : EnemyBase
 
     [Header("Move")]
     [SerializeField] private float _moveSpeed = 3f;
-    [SerializeField] private float _chaseDistance = 15f;    //近づける距離
+    [SerializeField] private float _detectRange = 30f;
     [SerializeField] private float _moveDistance = 10f;          //初期位置から動ける距離
     [SerializeField] private float _returnTime = 3f;         //戻り始めるまでの時間
     [Header("Attack")]
@@ -130,40 +130,52 @@ public class EnemyBoss : EnemyBase
         float playerDistance = Vector3.Distance(transform.position, _player.position);
         float startDistance = Vector3.Distance(transform.position,_startPosition);
 
-        // 初期位置にいてプレイヤーも遠いなら待機
-        if (playerDistance > _attackRange && startDistance < 0.2f)
+        if (_state != BossState.Return)
         {
-            _state = BossState.idle;
-            _returnTimer = 0f;
-            _animator.SetBool("Move", false);
-            return;
-        }
-
-        //攻撃範囲外の場合
-        if (playerDistance > _attackRange)
-        {
-            _returnTimer += Time.deltaTime;
-
-            if( _returnTimer >= _returnTime)
+            // 初期位置にいてプレイヤーも遠いなら待機
+            if (playerDistance > _detectRange && startDistance < 0.2f)
             {
-                _state = BossState.Return;
+                _state = BossState.idle;
                 _returnTimer = 0f;
+                _animator.SetBool("Move", false);
+                return;
             }
-        }
-        else
-        {
-            _returnTimer = 0;
 
-            if (playerDistance > _chaseDistance && startDistance < _moveDistance)
+            //範囲外の場合
+            if (playerDistance > _detectRange)
             {
-                _state = BossState.Chase;
+                _returnTimer += Time.deltaTime;
+
+                if (_returnTimer >= _returnTime)
+                {
+                    _state = BossState.Return;
+                    _returnTimer = 0f;
+                }
+            }
+            else if (playerDistance > _attackRange)
+            {
+                if (startDistance < _moveDistance)
+                {
+                    _state = BossState.Chase;
+                }
+                else
+                {
+                    _returnTimer += Time.deltaTime;
+
+                    if (_returnTimer >= _returnTime)
+                    {
+                        _state = BossState.Return;
+                        _returnTimer = 0f;
+                    }
+                }
             }
             else
             {
+                _returnTimer = 0f;
                 _state = BossState.Attack;
             }
         }
-
+       
         // ここで状態ごとの処理
         switch (_state)
         {
