@@ -20,7 +20,7 @@ public class EnemyBoss : EnemyBase
     [SerializeField] private float _moveDistance = 10f;          //‰ŠúˆÊ’u‚©‚ç“®‚¯‚é‹——£
     [SerializeField] private float _returnTime = 3f;         //–ß‚èn‚ß‚é‚Ü‚Å‚ÌŠÔ
     [Header("Attack")]
-    [SerializeField] private EnemyAsteroidProjectile _asteroidPrefab;
+    [SerializeField] private AsteroidProjectile _asteroidPrefab;
     [SerializeField] private HoundProjectile _houndPrefab;
     [SerializeField] private ViperProjectile _viperPrefab;
     [SerializeField] private Transform _firePoint;
@@ -315,7 +315,7 @@ public class EnemyBoss : EnemyBase
     {
         Vector3 dir = (_aimPoint.position - _firePoint.position).normalized;
 
-        EnemyAsteroidProjectile bullet =
+        AsteroidProjectile bullet =
             Instantiate(_asteroidPrefab,
             _firePoint.position,
             Quaternion.LookRotation(dir));

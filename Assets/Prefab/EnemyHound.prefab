@@ -13,10 +13,10 @@ GameObject:
   - component: {fileID: 5729324806159615313}
   - component: {fileID: 4142802734953570511}
   - component: {fileID: 1549459800169109078}
-  - component: {fileID: 1314273490597141248}
-  - component: {fileID: -3260160166445658191}
+  - component: {fileID: 350122202784057329}
+  - component: {fileID: 8101480280629283326}
   m_Layer: 6
-  m_Name: Asteroid
+  m_Name: EnemyHound
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -70,7 +70,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 355c6c5f26b5f724aaf82d5f29c4cf5c, type: 2}
+  - {fileID: 2100000, guid: 30e586059eed88d42b859ebef220ef6b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -142,7 +142,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &1314273490597141248
+--- !u!114 &350122202784057329
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -151,15 +151,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 1698224547999700599}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc2d4f1745a87a148bb79a16b3d2c7ed, type: 3}
+  m_Script: {fileID: 11500000, guid: ba4424b74df1f0549ac22e6db8d37cd0, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::AsteroidProjectile
+  m_EditorClassIdentifier: Assembly-CSharp::HoundProjectile
   _speed: 20
-  _lifeTime: 5
-  _damage: 30
+  _lifeTime: 10
+  _damage: 20
   _hitEffectPrefab: {fileID: 6975906353946102103, guid: 190b40d46b6ddfb48bf895185734eb78, type: 3}
   _shieldHitEffectPrefab: {fileID: 851134459474518137, guid: 51d012fab2f3be6468369202eb500636, type: 3}
---- !u!96 &-3260160166445658191
+  _turnSpeed: 100
+  _forwardWeight: 1
+  _curveDistance: 3
+--- !u!96 &8101480280629283326
 TrailRenderer:
   serializedVersion: 4
   m_ObjectHideFlags: 0
@@ -185,7 +188,7 @@ TrailRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 355c6c5f26b5f724aaf82d5f29c4cf5c, type: 2}
+  - {fileID: 2100000, guid: a0fc8743cf00ef1488d6b9ad0e2ef092, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

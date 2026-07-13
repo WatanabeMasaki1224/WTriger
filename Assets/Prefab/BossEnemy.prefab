@@ -5352,16 +5352,16 @@ MonoBehaviour:
   _chaseDistance: 15
   _moveDistance: 10
   _returnTime: 3
-  _asteroidPrefab: {fileID: 743445207085765626, guid: cd2d8b67c9975ed4ea233097ed2f09d9, type: 3}
+  _asteroidPrefab: {fileID: -7494161336754694690, guid: cd2d8b67c9975ed4ea233097ed2f09d9, type: 3}
   _houndPrefab: {fileID: 350122202784057329, guid: c9570dc3289827f4eaea1988f658acb6, type: 3}
-  _viperPrefab: {fileID: 6070317147335694845, guid: c3cd3e34403d8d94382426adac5c507c, type: 3}
+  _viperPrefab: {fileID: 6070317147335694845, guid: 24b4c687ee9fa4a43a48807e04ce37bd, type: 3}
   _firePoint: {fileID: 9175554940831501148}
   _attackInterval: 100
   _shieldPrefab: {fileID: 3877288467086409123, guid: 03f8852dd9ec1bb45b056a8e58418af9, type: 3}
   _shieldPoint: {fileID: 5552221486575339533}
   _shieldDuration: 3
   _shieldCooldown: 5
-  _bigCubePrefab: {fileID: 5880552311611982871, guid: 2a094f9deea854242ba295e445b20f2a, type: 3}
+  _bigCubePrefab: {fileID: 1064949397140944886, guid: ef73cdd3b0d2d56458e7c81bb7004c63, type: 3}
   _bigCubeDelay: 0.3
   _attackRange: 8
   _phase2Distance: 10

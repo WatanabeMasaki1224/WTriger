@@ -9,6 +9,7 @@ public class ProjectileBase : MonoBehaviour
     [SerializeField] protected float _damage = 20f;
     [Header("Effects")]
     [SerializeField] private GameObject _hitEffectPrefab;
+    [SerializeField] private GameObject _shieldHitEffectPrefab;
 
     protected Vector3 _moveDirection;
     protected bool _canMove;
@@ -51,26 +52,38 @@ public class ProjectileBase : MonoBehaviour
 
         if (other.TryGetComponent<ProjectileBase>(out _))
         {
-            Debug.Log("Projectileだった");
             return;
         }
-        Debug.Log($"Hit:{other.name}");
+
         if (other.gameObject == gameObject) return;
 
         if (other.TryGetComponent<ProjectileBase>(out _))
             return;
 
-        // 着弾エフェクト生成
-        if (_hitEffectPrefab != null)
-        {
-            Instantiate(_hitEffectPrefab, transform.position,Quaternion.identity);
-        }
 
         if (other.TryGetComponent<EnemyBase>(out var enemy))
         {
             enemy.TakeDamage(_damage);
+            Instantiate(_hitEffectPrefab, transform.position, Quaternion.identity);
             Destroy(gameObject);
+            return;
         }
+
+        if (other.TryGetComponent<ShieldObject>(out var shield))
+        {
+            Instantiate(_shieldHitEffectPrefab, transform.position, Quaternion.identity);
+            Destroy(gameObject);
+            return;
+        }
+
+        if (other.TryGetComponent<PlayerStatus>(out var player))
+        {
+            player.TakeDamage(_damage);
+            Instantiate(_hitEffectPrefab, transform.position, Quaternion.identity);
+            Destroy(gameObject);
+            return;
+        }
+
 
         // それ以外は全部消す（壁・シールド・地形など）
         Destroy(gameObject);
