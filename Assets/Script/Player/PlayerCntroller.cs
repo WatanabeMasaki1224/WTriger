@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float _moveSpeed = 5f;
     [SerializeField] float _jumpPower = 8f;
     [SerializeField] float _gravity = -9.8f;
+    [SerializeField] float _mouseSensitivity = 0.05f;
     [SerializeField] Transform _cameraTransform;
     float _cameraPitch = 0f;
     private ShooterWeponBase _shooter;
@@ -88,14 +89,14 @@ public class PlayerController : MonoBehaviour
 
     void Look()
     {
-        float mouseX = _lookInput.x * 0.1f;
-        float mouseY = _lookInput.y * 0.1f;
+        float mouseX = _lookInput.x * _mouseSensitivity;
+        float mouseY = _lookInput.y * _mouseSensitivity;
 
         transform.Rotate(0, mouseX, 0);
 
         _cameraPitch -= mouseY;
 
-        _cameraPitch = Mathf.Clamp(_cameraPitch, -80f, 80f);
+        _cameraPitch = Mathf.Clamp(_cameraPitch, -0f, 50f);
 
         _cameraTransform.localRotation =
             Quaternion.Euler(_cameraPitch, 0, 0);

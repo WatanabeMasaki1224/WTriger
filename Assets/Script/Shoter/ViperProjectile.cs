@@ -149,7 +149,7 @@ public class ViperProjectile : ProjectileBase
     private void SetupUpperCurve()
     {
         _startPosition = transform.position;
-        Vector3 basePoint = Vector3.Lerp(_startPosition, _targetPosition, 0.8f);
+        Vector3 basePoint = Vector3.Lerp(_startPosition, _targetPosition, 0.5f);
         _curvePoint = basePoint + Vector3.up * _curveDistance;
     }
 

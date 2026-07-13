@@ -35,7 +35,6 @@ public class EnemyBase : MonoBehaviour
     {
         _hp -= damage;
         _audioSource.PlayOneShot(_hitSE);
-        StartCoroutine(HitStop());
 
         Debug.Log($"EnemyDmage:{damage} ");
 
@@ -43,24 +42,30 @@ public class EnemyBase : MonoBehaviour
         {
             Die();
         }
+        else
+        {
+            StartCoroutine(HitStop());
+        }
     }
 
     private IEnumerator HitStop()
     {
         Time.timeScale = 0f;
 
-        yield return new WaitForSecondsRealtime(0.05f);
+        yield return new WaitForSecondsRealtime(0.1f);
 
         Time.timeScale = 1f;
     }
 
     protected virtual void Die()
     {
+        Time.timeScale = 1f;
+
         if (_spawner != null)
         {
             _spawner.EnemyDead(this);
         }
-
+        Debug.Log(Time.timeScale);
         Destroy(gameObject);
     }
 
