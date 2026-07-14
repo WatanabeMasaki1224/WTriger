@@ -1821,6 +1821,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 376707126}
     - target: {fileID: 1015442186014547107, guid: 14c31b5b28830e44583c54e8b57f75ff, type: 3}
+      propertyPath: _bailoutDelay
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1015442186014547107, guid: 14c31b5b28830e44583c54e8b57f75ff, type: 3}
       propertyPath: _bigCubeDelay
       value: 0.5
       objectReference: {fileID: 0}
@@ -1852,6 +1856,10 @@ PrefabInstance:
       propertyPath: _markerDistance
       value: 20
       objectReference: {fileID: 0}
+    - target: {fileID: 1015442186014547107, guid: 14c31b5b28830e44583c54e8b57f75ff, type: 3}
+      propertyPath: _deadEffectPrefab
+      value: 
+      objectReference: {fileID: 2578446882531910643, guid: 1459944597c30614faa8aeee4cd9045a, type: 3}
     - target: {fileID: 2445937068406639483, guid: 14c31b5b28830e44583c54e8b57f75ff, type: 3}
       propertyPath: m_Avatar
       value: 

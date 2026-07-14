@@ -72,6 +72,11 @@ public class EnemyBase : MonoBehaviour
 
         Time.timeScale = 1f;
 
+        foreach (var renderer in GetComponentsInChildren<SkinnedMeshRenderer>())
+        {
+            renderer.enabled = false;
+        }
+
         if (_spawner != null)
         {
             _spawner.EnemyDead(this);
