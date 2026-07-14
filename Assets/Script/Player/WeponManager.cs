@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -11,6 +12,9 @@ public class WeponManager : MonoBehaviour
 
     private int _mainIndex;
     private int _subIndex;
+    public static event Action OnMainWeponChanged;
+    public ShooterWeponBase[] MainWeapons => _mainWeapons;
+    public int MainIndex => _mainIndex;
 
     /// <summary>
     /// Œ»İ‘I‘ğ’†‚ÌƒƒCƒ“•Ší‚ğ”­Ë‚·‚é
@@ -55,6 +59,7 @@ public class WeponManager : MonoBehaviour
             _mainIndex = 0;
         }
 
+        OnMainWeponChanged?.Invoke();  
         Debug.Log($"ƒƒCƒ“•Ší : {_mainWeapons[_mainIndex].name}");
     }
 

@@ -55,6 +55,7 @@ public class EnemyBoss : EnemyBase
     private float _cooldownTimer;
     private bool _isAttacking;
 
+
     protected override void Start()
     {
         _player = GameObject.FindGameObjectWithTag("Player").transform;

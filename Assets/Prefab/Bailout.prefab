@@ -31,7 +31,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 10.06797, y: -1, z: 5.00414}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -126,10 +126,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86c0c9548acb8614480cb02fa8940940, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Bailout
-  _upSpeed: 20
+  _upSpeed: 30
   _escapeSpeed: 20
-  _lifeTime: 5
-  _upTime: 2
+  _lifeTime: 8
+  _upTime: 1.5
 --- !u!96 &413446349365105228
 TrailRenderer:
   serializedVersion: 4
@@ -189,7 +189,7 @@ TrailRenderer:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0.9663906
+        value: 0.40168
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -197,8 +197,8 @@ TrailRenderer:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 0.57547045
-        value: 0.4336077
+        time: 0.555408
+        value: 0.137811
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -207,7 +207,7 @@ TrailRenderer:
         outWeight: 0
       - serializedVersion: 3
         time: 1
-        value: 0.19496155
+        value: 0
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -244,7 +244,7 @@ TrailRenderer:
       atime6: 0
       atime7: 0
       m_Mode: 0
-      m_ColorSpace: -1
+      m_ColorSpace: 0
       m_NumColorKeys: 2
       m_NumAlphaKeys: 2
     numCornerVertices: 0

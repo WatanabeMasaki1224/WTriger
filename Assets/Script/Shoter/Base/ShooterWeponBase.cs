@@ -24,6 +24,9 @@ public class ShooterWeponBase : MonoBehaviour
     [SerializeField] private AudioClip _bigCubeSE;
     [SerializeField] private AudioClip _shotSE;
 
+    [SerializeField] private string _weaponName;
+    public string WeaponName => _weaponName;
+
     protected PlayerStatus _playerStatus;
     protected bool _isShooting;
     public bool IsShooting => _isShooting;

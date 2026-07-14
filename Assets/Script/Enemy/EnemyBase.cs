@@ -71,6 +71,7 @@ public class EnemyBase : MonoBehaviour
     {
 
         Time.timeScale = 1f;
+        FindObjectOfType<GameManager>().AddKillCount();
 
         foreach (var renderer in GetComponentsInChildren<SkinnedMeshRenderer>())
         {
