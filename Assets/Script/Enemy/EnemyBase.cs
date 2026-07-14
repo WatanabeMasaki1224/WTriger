@@ -12,6 +12,10 @@ public class EnemyBase : MonoBehaviour
     protected Transform _player;
     [SerializeField] private AudioSource _audioSource;
     [SerializeField] private AudioClip _hitSE;
+    [SerializeField] private GameObject _bailoutPrefab;
+    [SerializeField] private GameObject _deadEffectPrefab;
+    [SerializeField] private float _bailoutDelay = 0.4f;
+    private bool _isDead;
     public float HP => _hp;
     public float MaxHP => _maxHP;
 
@@ -33,6 +37,11 @@ public class EnemyBase : MonoBehaviour
 
     public virtual void TakeDamage(float damage)
     {
+        if (_isDead)
+        {
+            return;
+        }
+
         _hp -= damage;
         _audioSource.PlayOneShot(_hitSE);
 
@@ -40,6 +49,7 @@ public class EnemyBase : MonoBehaviour
 
         if (_hp <= 0)
         {
+            _isDead = true;
             Die();
         }
         else
@@ -59,13 +69,21 @@ public class EnemyBase : MonoBehaviour
 
     protected virtual void Die()
     {
+
         Time.timeScale = 1f;
 
         if (_spawner != null)
         {
             _spawner.EnemyDead(this);
         }
-        Debug.Log(Time.timeScale);
+        StartCoroutine(DeadRoutine());
+    }
+
+    private IEnumerator DeadRoutine()
+    {
+        Instantiate(_deadEffectPrefab,transform.position, Quaternion.identity);
+        yield return new WaitForSeconds(_bailoutDelay);
+        Instantiate(_bailoutPrefab, transform.position, Quaternion.identity);
         Destroy(gameObject);
     }
 
