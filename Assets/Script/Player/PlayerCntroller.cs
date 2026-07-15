@@ -60,11 +60,13 @@ public class PlayerController : MonoBehaviour
 
     void Move()
     {
+        // 攻撃中は移動できない
         if (_weponManager.IsShooting)
         {
             return;
         }
 
+        // カメラの向きを基準に移動方向を計算
         Vector3 forward = _cameraTransform.forward;
         Vector3 right = _cameraTransform.right;
         forward.y = 0f;
@@ -79,26 +81,30 @@ public class PlayerController : MonoBehaviour
             _verticalVelocity = -2f;
         }
 
+        // 重力を適用
         _verticalVelocity += _gravity * Time.deltaTime;
         _characterController.Move(Vector3.up * _verticalVelocity * Time.deltaTime);
+        // アニメーションへ移動情報を渡す
         float speed = _moveInput.magnitude;
         _animator.SetFloat("Speed", speed);
         _animator.SetFloat("MoveX", _moveInput.x);
         _animator.SetFloat("MoveY", _moveInput.y);
     }
 
+    /// <summary>
+    /// カメラの視点を操作する
+    /// </summary>
     void Look()
     {
         float mouseX = _lookInput.x * _mouseSensitivity;
         float mouseY = _lookInput.y * _mouseSensitivity;
-
+        // プレイヤーを左右に回転
         transform.Rotate(0, mouseX, 0);
-
+        // カメラを上下に回転
         _cameraPitch -= mouseY;
+        // カメラの上下角度を制限
+        _cameraPitch = Mathf.Clamp(_cameraPitch, 0f, 50f);
 
-        _cameraPitch = Mathf.Clamp(_cameraPitch, -0f, 50f);
-
-        _cameraTransform.localRotation =
-            Quaternion.Euler(_cameraPitch, 0, 0);
+        _cameraTransform.localRotation = Quaternion.Euler(_cameraPitch, 0, 0);
     }
 }

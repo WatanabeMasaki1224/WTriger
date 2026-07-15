@@ -17,7 +17,7 @@ public class WeponManager : MonoBehaviour
     public int MainIndex => _mainIndex;
 
     /// <summary>
-    /// 現在選択中のメイン武器を発射する
+    /// 現在選択中のメイン武器を使用する
     /// </summary>
     public void OnMainFire(InputAction.CallbackContext context)
     {
@@ -30,7 +30,7 @@ public class WeponManager : MonoBehaviour
     }
 
     /// <summary>
-    /// 現在選択中のサブ武器を発動する
+    /// 現在選択中のサブ武器を使用する
     /// </summary>
     public void OnSubFire(InputAction.CallbackContext context)
     {
@@ -54,13 +54,14 @@ public class WeponManager : MonoBehaviour
 
         _mainIndex++;
 
+        //Indexが設定数より上回った場合0に
         if (_mainIndex >= _mainWeapons.Length)
         {
             _mainIndex = 0;
         }
 
+        // UIへ武器変更を通知
         OnMainWeponChanged?.Invoke();  
-        Debug.Log($"メイン武器 : {_mainWeapons[_mainIndex].name}");
     }
 
     /// <summary>
@@ -75,6 +76,7 @@ public class WeponManager : MonoBehaviour
 
         _subIndex++;
 
+        //Indexが設定数より上回った場合0に
         if (_subIndex >= _subWeapons.Length)
         {
             _subIndex = 0;
@@ -83,6 +85,9 @@ public class WeponManager : MonoBehaviour
         Debug.Log($"サブ武器 : {_subWeapons[_subIndex].name}");
     }
 
+    /// <summary>
+    /// 現在のメイン武器が攻撃中かどうか
+    /// </summary>
     public bool IsShooting
     {
         get

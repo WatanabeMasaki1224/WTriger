@@ -21,16 +21,19 @@ public class Shield : SubWeponBase
     private GameObject _currentShield;
     private float _timer;
 
-
+    /// <summary>
+    /// シールド展開中のトリオン消費を管理する
+    /// </summary>
     private void Update()
     {
-        if(!_isShieldActive)
+        //シールド展開中のトリオン消費を管理する
+        if (!_isShieldActive)
         {
             return;
         }
 
         _timer += Time.deltaTime;
-
+        //1秒ごとにトリオン消費
         if(_timer < 1f)
         {
             return ;
@@ -39,6 +42,7 @@ public class Shield : SubWeponBase
         _timer =0f;
         float cost = 0f;
 
+        //シールドの種類でトリオン消費量変更
         switch(_currentShieldType)
         {
             case ShieldType.Front:
@@ -50,6 +54,7 @@ public class Shield : SubWeponBase
                 break;
         }
 
+        //トリオン不足ならシールド解除
         if(!_playerStatus.ConsumeTrion(cost))
         {
             DisableShield();
@@ -77,7 +82,8 @@ public class Shield : SubWeponBase
     /// </summary>
     private void ActivateShield(ShieldType shieldType)
     {
-        DisableShield(); //すでにシールドがある場合削除するため
+        // 既に展開中なら一度解除する
+        DisableShield(); 
         GameObject shieldPrefab = null;
         Transform spawnPoint = null;
 
@@ -129,7 +135,5 @@ public class Shield : SubWeponBase
         {
             _currentShieldType = ShieldType.Front;
         }
-
-        Debug.Log($"現在のシールド : {_currentShieldType}");
     }
 }

@@ -23,7 +23,7 @@ public class HoundProjectile : ProjectileBase
         _startPosition = transform.position;
         _reachedCurvePoint = false;
         _hasTarget = target != null;
-
+        //ロックオン対象だいないときは直線
         if (!_hasTarget) return;
         Vector3 targetPos = _target.position;
         //敵との中間地点を計算
@@ -34,6 +34,9 @@ public class HoundProjectile : ProjectileBase
         
     }
 
+    /// <summary>
+    /// 弾の移動処理
+    /// </summary>
     protected override void Update()
     {
         if (!_canMove)
@@ -42,7 +45,7 @@ public class HoundProjectile : ProjectileBase
         }
         Vector3 dir = _moveDirection;
 
-        //敵なし → 直進だけ
+        //ターゲットなしなら直進だけ
         if (!_hasTarget)
         {
             _moveDirection = dir;
@@ -62,14 +65,17 @@ public class HoundProjectile : ProjectileBase
             }
         }
 
+        // カーブ後はターゲットを追尾
         else if (_target != null)
         {
             Vector3 toTarget =
                 (_target.position - transform.position).normalized;
 
-            // 少しだけ追尾方向へ寄せる
+            // 徐々にターゲット方向へ向きを変える
             dir = Vector3.Slerp( _moveDirection, toTarget,_turnSpeed * Time.deltaTime);
         }
+
+        // 前進方向を残しつつ移動方向を更新
         _moveDirection = (_moveDirection * _forwardWeight + dir).normalized;
         transform.forward = _moveDirection;
         transform.position += _moveDirection * _speed * Time.deltaTime;

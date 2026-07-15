@@ -15,6 +15,7 @@ public class EnemyBase : MonoBehaviour
     [SerializeField] private GameObject _bailoutPrefab;
     [SerializeField] private GameObject _deadEffectPrefab;
     [SerializeField] private float _bailoutDelay = 0.4f;
+
     private bool _isDead;
     public float HP => _hp;
     public float MaxHP => _maxHP;
@@ -58,6 +59,9 @@ public class EnemyBase : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// ヒットストップを行う
+    /// </summary>
     private IEnumerator HitStop()
     {
         Time.timeScale = 0f;
@@ -67,17 +71,23 @@ public class EnemyBase : MonoBehaviour
         Time.timeScale = 1f;
     }
 
+    /// <summary>
+    /// 敵の死亡処理
+    /// </summary>
     protected virtual void Die()
     {
 
         Time.timeScale = 1f;
+        // キル数を加算
         FindObjectOfType<GameManager>().AddKillCount();
 
+        // モデルを非表示にする
         foreach (var renderer in GetComponentsInChildren<SkinnedMeshRenderer>())
         {
             renderer.enabled = false;
         }
 
+        // スポナーへ死亡を通知
         if (_spawner != null)
         {
             _spawner.EnemyDead(this);
@@ -85,6 +95,9 @@ public class EnemyBase : MonoBehaviour
         StartCoroutine(DeadRoutine());
     }
 
+    /// <summary>
+    /// 死亡演出(ベイルアウト)を再生する
+    /// </summary>
     private IEnumerator DeadRoutine()
     {
         Instantiate(_deadEffectPrefab,transform.position, Quaternion.identity);
@@ -93,11 +106,17 @@ public class EnemyBase : MonoBehaviour
         Destroy(gameObject);
     }
 
+    /// <summary>
+    /// スポナーを設定する
+    /// </summary>
     public void SetSpawner(EnemySpawner spawner)
     {
         _spawner = spawner;
     }
 
+    /// <summary>
+    /// ロックオンマーカーの表示を更新する
+    /// </summary>
     protected virtual void UpdateLockOnMarker()
     {
         if (_player == null || _lockOnMarker == null)

@@ -3784,7 +3784,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &5789545890106951128
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3825,14 +3825,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0.24614653, g: 0.17383398, b: 0.96981126, a: 1}
+  m_Color: {r: 0.6861018, g: 0.7381115, b: 0.93962264, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 21300006, guid: 56d84991286850f428b4e7df0cca7380, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -5348,8 +5348,11 @@ MonoBehaviour:
   _markerDistance: 5
   _audioSource: {fileID: 6499368850027454596}
   _hitSE: {fileID: 8300000, guid: e0df93c8deb5c64489a94182db751a97, type: 3}
+  _bailoutPrefab: {fileID: 0}
+  _deadEffectPrefab: {fileID: 0}
+  _bailoutDelay: 0.4
   _moveSpeed: 3
-  _chaseDistance: 15
+  _detectRange: 30
   _moveDistance: 10
   _returnTime: 3
   _asteroidPrefab: {fileID: -7494161336754694690, guid: cd2d8b67c9975ed4ea233097ed2f09d9, type: 3}

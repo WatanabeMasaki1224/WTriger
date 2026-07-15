@@ -1,12 +1,17 @@
 using UnityEngine;
- using System.Collections;
+using System.Collections;
 
 public class AsteroidWepon : ShooterWeponBase
 {
+    /// <summary>
+    /// アステロイドの弾を生成する
+    /// </summary>
     protected override void CreateProjectile(Vector3 spawnPosition)
     {
+        // ロックオン対象を取得
         Transform target = GetLockTarget();
 
+        // ロックオン対象がいる場合は敵の方向へ発射
         Vector3 dir = _cameraTransform.forward;
 
         if (target != null)
@@ -24,7 +29,7 @@ public class AsteroidWepon : ShooterWeponBase
     }
 
     /// <summary>
-    ///  弾を発射（引数の関係でベースのやつがつかえないため）
+    ///  発射アニメーション後に弾を発射する
     /// </summary>
     /// <param name="projectile"></param>
     /// <param name="dir"></param>

@@ -276,6 +276,9 @@ public class EnemyBoss : EnemyBase
         }
     }
 
+    /// <summary>
+    /// 攻撃演出を行い、弾を発射する
+    /// </summary>
     private IEnumerator ShotRoutine(Action fireAction)
     {
         _isAttacking = true;
@@ -298,6 +301,9 @@ public class EnemyBoss : EnemyBase
        
     }
 
+    /// <summary>
+    /// 大玉を分裂させて弾を発射する
+    /// </summary>
     private void SplitAndFire(GameObject bigCube, Action fireAction)
     {
         Vector3[] offsets =
@@ -320,6 +326,9 @@ public class EnemyBoss : EnemyBase
 
     }
 
+    /// <summary>
+    /// 発射アニメーション後に弾を発射する
+    /// </summary>
     private IEnumerator DelayFire(ProjectileBase projectile, Vector3 direction)
     {
         yield return new WaitForSeconds(0.5f);
@@ -327,6 +336,9 @@ public class EnemyBoss : EnemyBase
         projectile.Initialize(direction);
     }
 
+    /// <summary>
+    /// Asteroidを発射する
+    /// </summary>
     private void FireAsteroid()
     {
         Vector3 dir = (_aimPoint.position - _firePoint.position).normalized;
@@ -339,6 +351,9 @@ public class EnemyBoss : EnemyBase
         StartCoroutine(DelayFire(bullet, dir));
     }
 
+    /// <summary>
+    /// Houndを発射する
+    /// </summary>
     private void FireHound()
     {
         Vector3 dir = (_aimPoint.position - _firePoint.position).normalized;
@@ -352,6 +367,9 @@ public class EnemyBoss : EnemyBase
         StartCoroutine(DelayFire(bullet, dir));
     }
 
+    /// <summary>
+    /// Viperを発射する
+    /// </summary>
     private void FireViper()
     {
         Vector3 dir = (_aimPoint.position - _firePoint.position).normalized;
@@ -366,6 +384,9 @@ public class EnemyBoss : EnemyBase
         StartCoroutine(DelayFire(bullet, dir));
     }
 
+    /// <summary>
+    /// シールドを展開する
+    /// </summary>
     private void ActivateShield()
     {
         if (!_canShield)
@@ -380,6 +401,9 @@ public class EnemyBoss : EnemyBase
         _canShield = false;
     }
 
+    /// <summary>
+    /// シールドの展開時間の管理
+    /// </summary
     private void UpdateShield()
     {
         _shieldTimer += Time.deltaTime;
@@ -397,6 +421,9 @@ public class EnemyBoss : EnemyBase
         _cooldownTimer = 0f;
     }
 
+    /// <summary>
+    /// シールドのクールタイムを更新する
+    /// </summary>
     private void UpdateCooldown()
     {
         if (_canShield)
@@ -412,6 +439,9 @@ public class EnemyBoss : EnemyBase
         }
     }
 
+    /// <summary>
+    /// プレイヤーの攻撃時で ActivateShield()を呼ぶ
+    /// </summary>
     private void OnPlayerShot()
     {
         // シールド中なら何もしない
@@ -426,12 +456,15 @@ public class EnemyBoss : EnemyBase
             return;
         }
 
-        if (_isAttacking)     // ←追加
+        if (_isAttacking)  
             return;
 
         ActivateShield();
     }
 
+    /// <summary>
+    /// イベント登録を解除する
+    /// </summary>
     private void OnDestroy()
     {
         ShooterWeponBase.OnPlayerShot -= OnPlayerShot;

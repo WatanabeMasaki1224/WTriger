@@ -7,6 +7,10 @@ public class VipreWepon : ShooterWeponBase
     [SerializeField] private ViperProjectile _viperPrefab;
     [SerializeField] private ViperProjectile.ViperPattern _currentPattern;
 
+    /// <summary>
+    /// 弾を生成し、軌道パターンと目標地点を設定する
+    /// </summary>
+    /// <param name="spawnPosition"></param>
     protected override void CreateProjectile(Vector3 spawnPosition)
     {
         ViperProjectile projectile = Instantiate(
@@ -15,10 +19,13 @@ public class VipreWepon : ShooterWeponBase
             Quaternion.LookRotation(_cameraTransform.forward)
         );
 
+        // 現在の軌道パターンを設定
         projectile.SetPattern(_currentPattern);
+        // 発射処理を開始
         StartCoroutine(FireProjectile(projectile));
         Transform target = GetLockTarget();
 
+        // ロックオン対象がいる場合は目標地点を設定
         if (target != null)
         {
             projectile.SetTargetPosition(target.position);
@@ -26,7 +33,7 @@ public class VipreWepon : ShooterWeponBase
     }
 
     /// <summary>
-    /// 左右カーブモードに変更
+    /// 左右カーブモードに切り替え
     /// </summary>
     /// <param name="context"></param>
     public void OnViper1(InputAction.CallbackContext context)
@@ -36,14 +43,11 @@ public class VipreWepon : ShooterWeponBase
             return;
         }
 
-        _currentPattern =
-            ViperProjectile.ViperPattern.SideCurve;
-
-        Debug.Log("左右カーブに切り替え");
+        _currentPattern =　ViperProjectile.ViperPattern.SideCurve;
     }
 
     /// <summary>
-    /// 上方向カーブモードに変更
+    /// 上方向カーブモードに切り替え
     /// </summary>
     /// <param name="context"></param>
     public void OnViper2(InputAction.CallbackContext context)
@@ -53,10 +57,7 @@ public class VipreWepon : ShooterWeponBase
             return;
         }
 
-        _currentPattern =
-            ViperProjectile.ViperPattern.UpperCurve;
-
-        Debug.Log("上カーブに切り替え");
+        _currentPattern =　ViperProjectile.ViperPattern.UpperCurve;
     }
 
     /// <summary>
@@ -70,8 +71,7 @@ public class VipreWepon : ShooterWeponBase
             return;
         }
 
-        _currentPattern =
-            ViperProjectile.ViperPattern.BackCurve;
+        _currentPattern = ViperProjectile.ViperPattern.BackCurve;
 
         Debug.Log("再突撃に切り替え");
     }

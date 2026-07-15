@@ -51,6 +51,7 @@ public class ShooterWeponBase : MonoBehaviour
             return;
         }
 
+        // トリオンが不足している場合は発射しない
         if (!_playerStatus.ConsumeTrion(_trionCost))
         {
             return;
@@ -61,7 +62,7 @@ public class ShooterWeponBase : MonoBehaviour
     }
 
     /// <summary>
-    /// 大玉を作成、分割し発射までの流れ
+    /// 大玉を作成、分割し発射
     /// </summary>
     /// <returns></returns>
     protected virtual IEnumerator ShootRoutine()
@@ -79,7 +80,7 @@ public class ShooterWeponBase : MonoBehaviour
         // 少し待機
         yield return new WaitForSeconds(_cubeDelay);
 
-        // 分割＆発射
+        // 大玉を分割して弾を生成
         SplitAndFire(bigCube);
 
         yield return new WaitForSeconds(0.5f);
@@ -107,11 +108,10 @@ public class ShooterWeponBase : MonoBehaviour
             CreateProjectile(spawnPosition);
         }
 
-        // ★プレイヤーが攻撃したことを通知
+        //プレイヤーが攻撃したことを通知
         OnPlayerShot?.Invoke();
         _animator.SetTrigger("Shoot");
         _audioSource.PlayOneShot(_shotSE);
-        // 大玉削除
         Destroy(bigCube);
     }
 
@@ -144,37 +144,36 @@ public class ShooterWeponBase : MonoBehaviour
     }
 
     /// <summary>
-    /// ロックの対象を所得
+    /// ロック対象を所得
     /// </summary>
     /// <returns></returns>
     protected Transform GetLockTarget()
     {
+        // 範囲内の敵を取得
         Collider[] hits = Physics.OverlapSphere(_firePoint.position, _lockOnRange, _enemyLayer);
-        Debug.Log($"候補数:{hits.Length}");
         Transform nearestTarget = null;
         float nearestDistance = Mathf.Infinity;
 
         foreach (Collider hit in hits)
         {
-            Debug.Log(hit.name);
             Vector3 enemyPosition = hit.transform.position - _firePoint.position;
             float angle = Vector3.Angle(_cameraTransform.forward, enemyPosition);
 
-            if(angle > _lookOnAngle * 0.5f)
+            // 視野角外の敵は除外
+            if (angle > _lookOnAngle * 0.5f)
             {
                 continue;
             }
 
             float distance  =  enemyPosition.magnitude;
 
-            if(distance < nearestDistance)
+            // 最も近い敵をロックオン対象にする
+            if (distance < nearestDistance)
             {
                 nearestDistance = distance;
                 nearestTarget = hit.transform;
-            }
-                
+            }   
         }
-
         return nearestTarget;
     }
 }

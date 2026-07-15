@@ -5,6 +5,8 @@ public class PlayerStatus : MonoBehaviour
     [Header("Trion")]
     [SerializeField] private float _maxTrion = 100f;
     private float _currentTrion;
+    [SerializeField] private AudioSource _audioSource;
+    [SerializeField] private AudioClip _damageSE;
     public float CurrentTrion => _currentTrion;
     public float MaxTrion => _maxTrion;
 
@@ -20,12 +22,10 @@ public class PlayerStatus : MonoBehaviour
     {
         if(_currentTrion < amount)
         {
-            Debug.Log("トリオン不足");
             return false;
         }
 
         _currentTrion -= amount;
-        Debug.Log($"残りトリオン：{_currentTrion}");
         return true;
     }
 
@@ -35,8 +35,7 @@ public class PlayerStatus : MonoBehaviour
     public void TakeDamage(float damage)
     {
         _currentTrion -= damage;
-
-        Debug.Log($"被弾 トリオン残量：{_currentTrion}");
+        _audioSource.PlayOneShot(_damageSE);
 
         if (_currentTrion <= 0)
         {

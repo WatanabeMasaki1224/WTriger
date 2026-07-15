@@ -62,6 +62,9 @@ public class ViperProjectile : ProjectileBase
         }
     }
 
+    /// <summary>
+    /// 弾の移動処理
+    /// </summary>
     protected override void Update()
     {
         if (!_canMove)
@@ -69,13 +72,14 @@ public class ViperProjectile : ProjectileBase
             return;
         }
 
-        //敵なし → 直進
+        //ターゲットなしの場合は直進
         if (!_hasTarget)
         {
             transform.position +=_moveDirection * _speed * Time.deltaTime;
             return;
         }
 
+        // パターンごとに軌道を更新
         switch (_pattern)
         {
             case ViperPattern.SideCurve:
@@ -99,15 +103,18 @@ public class ViperProjectile : ProjectileBase
     private void  SetupSideCurve()
     {
         _startPosition = transform.position;
+        // 発射地点から目標地点への方向
         Vector3 direction = (_targetPosition - _startPosition).normalized;
+        // 目標付近をカーブの基準点とする
         Vector3 basePoint = Vector3.Lerp(_startPosition,_targetPosition,0.8f);
+        // 左右どちらかへランダムにカーブさせる
         Vector3 side = Vector3.Cross(Vector3.up, direction);
         float randomSide = Random.Range(0, 2) == 0 ? -1f : 1f;
         _curvePoint = basePoint + side * randomSide * _curveDistance;
     }
 
     /// <summary>
-    /// 左右と上カーブ軌道をフレームごとに更新
+    /// カーブの軌道をフレームごとに更新する
     /// </summary>
     private void UpdateCurve()
     {
@@ -118,22 +125,25 @@ public class ViperProjectile : ProjectileBase
 
         Vector3 dir = _moveDirection;
 
+        // カーブの頂点まで移動
         if (!_reachedCurvePoint)
         {
             Vector3 toCurve =(_curvePoint - transform.position).normalized;
             dir = Vector3.Slerp(_moveDirection, toCurve, _turnSpeed * Time.deltaTime );
 
+            // カーブの頂点に到達したら目標地点へ向かう
             if (Vector3.Distance( transform.position, _curvePoint) < 1f)
             {
                 _reachedCurvePoint = true;
             }
         }
         else
-        {
+        {// 目標地点へ向かう
+
             Vector3 toTarget =(_targetPosition - transform.position).normalized;
             dir = Vector3.Slerp(_moveDirection, toTarget, _turnSpeed * Time.deltaTime);
 
-            // ロックオン時の地点に到達したら誘導終了
+            //目標地点に到達したら誘導終了
             if (Vector3.Distance(transform.position, _targetPosition) < 1f)
             {
                 _finishedCurve = true;
@@ -149,7 +159,9 @@ public class ViperProjectile : ProjectileBase
     private void SetupUpperCurve()
     {
         _startPosition = transform.position;
+        // 発射地点と目標地点の中間を基準点とする
         Vector3 basePoint = Vector3.Lerp(_startPosition, _targetPosition, 0.5f);
+        // 上方向へ膨らむようにカーブを設定
         _curvePoint = basePoint + Vector3.up * _curveDistance;
     }
 

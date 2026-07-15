@@ -21,6 +21,9 @@ public class TriggerUI : MonoBehaviour
         UpdateUI();
     }
 
+    /// <summary>
+    /// •Ší‘I‘ğUI‚ğXV
+    /// </summary>
     private void UpdateUI()
     {
         var weapons = _weaponManager.MainWeapons;

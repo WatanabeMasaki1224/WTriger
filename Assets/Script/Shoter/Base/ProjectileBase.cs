@@ -14,6 +14,9 @@ public class ProjectileBase : MonoBehaviour
     protected Vector3 _moveDirection;
     protected bool _canMove;
 
+    /// <summary>
+    /// 弾の寿命を設定する
+    /// </summary>
     protected virtual void Start()
     {
         Destroy(gameObject, _lifeTime);
@@ -22,7 +25,6 @@ public class ProjectileBase : MonoBehaviour
     /// 弾の移動方向を設定する
     /// </summary>
     /// <param name="direction"></param>
-
     public virtual void Initialize(Vector3 direction)
     {
         _moveDirection = direction.normalized;
@@ -39,28 +41,22 @@ public class ProjectileBase : MonoBehaviour
             return;
         }
 
-        transform.position +=
-            _moveDirection * _speed * Time.deltaTime;
+        transform.position += _moveDirection * _speed * Time.deltaTime;
     }
 
     /// <summary>
-    /// 衝突時の処理
+    /// オブジェクトと衝突した時の処理
     /// </summary>
     /// <param name="other"></param>
     protected virtual void OnTriggerEnter(Collider other)
     {
-
+        // 弾同士は当たり判定を無視
         if (other.TryGetComponent<ProjectileBase>(out _))
         {
             return;
         }
 
-        if (other.gameObject == gameObject) return;
-
-        if (other.TryGetComponent<ProjectileBase>(out _))
-            return;
-
-
+        // 敵に命中
         if (other.TryGetComponent<EnemyBase>(out var enemy))
         {
             enemy.TakeDamage(_damage);
@@ -69,6 +65,7 @@ public class ProjectileBase : MonoBehaviour
             return;
         }
 
+        // シールドに命中
         if (other.TryGetComponent<ShieldObject>(out var shield))
         {
             Instantiate(_shieldHitEffectPrefab, transform.position, Quaternion.identity);
@@ -76,6 +73,7 @@ public class ProjectileBase : MonoBehaviour
             return;
         }
 
+        // プレイヤーに命中
         if (other.TryGetComponent<PlayerStatus>(out var player))
         {
             player.TakeDamage(_damage);
@@ -85,7 +83,7 @@ public class ProjectileBase : MonoBehaviour
         }
 
 
-        // それ以外は全部消す（壁・シールド・地形など）
+        // それ以外
         Destroy(gameObject);
     }
 }
