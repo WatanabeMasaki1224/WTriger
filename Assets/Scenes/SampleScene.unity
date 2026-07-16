@@ -2025,7 +2025,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1015442186014547107, guid: 14c31b5b28830e44583c54e8b57f75ff, type: 3}
       propertyPath: _hp
-      value: 100
+      value: 1000
       objectReference: {fileID: 0}
     - target: {fileID: 1015442186014547107, guid: 14c31b5b28830e44583c54e8b57f75ff, type: 3}
       propertyPath: _bailoutSE
@@ -2121,7 +2121,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7652885350329552867, guid: 14c31b5b28830e44583c54e8b57f75ff, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -3.87
       objectReference: {fileID: 0}
     - target: {fileID: 7652885350329552867, guid: 14c31b5b28830e44583c54e8b57f75ff, type: 3}
       propertyPath: m_LocalRotation.w

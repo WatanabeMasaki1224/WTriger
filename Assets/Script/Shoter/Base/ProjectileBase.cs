@@ -69,6 +69,7 @@ public class ProjectileBase : MonoBehaviour
         if (other.TryGetComponent<ShieldObject>(out var shield))
         {
             Instantiate(_shieldHitEffectPrefab, transform.position, Quaternion.identity);
+            shield.PlayHitSE();
             Destroy(gameObject);
             return;
         }
