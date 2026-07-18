@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -16,6 +17,11 @@ public class PlayerController : MonoBehaviour
     float _cameraPitch = 0f;
     private ShooterWeponBase _shooter;
     private WeponManager _weponManager;
+    public CharacterController Controller => _characterController;
+    public Transform CameraTransform => _cameraTransform;
+    public Vector2 MoveInput => _moveInput;
+
+    public bool CanMove { get; set; } = true;
 
     private void Start()
     {
@@ -60,6 +66,11 @@ public class PlayerController : MonoBehaviour
 
     void Move()
     {
+        if (!CanMove)
+        {
+            return;
+        }
+
         // UŒ‚’†‚ÍˆÚ“®‚Å‚«‚È‚¢
         if (_weponManager.IsShooting)
         {

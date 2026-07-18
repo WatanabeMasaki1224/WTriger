@@ -256,6 +256,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 22111224}
   m_CullTransparentMesh: 1
+--- !u!1 &37979762 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4008658825569139944, guid: dcf6b0d704939c647b2c3e3ce23a183b, type: 3}
+  m_PrefabInstance: {fileID: 1307036579}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &56486432 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4828993989590112, guid: bbad862e7e06efe4a8ad0346a53e3cde, type: 3}
@@ -1426,7 +1431,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 374958136640892561, guid: dcf6b0d704939c647b2c3e3ce23a183b, type: 3}
   m_PrefabInstance: {fileID: 1307036579}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 37979762}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9805e91a1184b934e87755514200dbff, type: 3}
@@ -2531,7 +2536,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6957235708543249153, guid: dcf6b0d704939c647b2c3e3ce23a183b, type: 3}
   m_PrefabInstance: {fileID: 1307036579}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 37979762}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 83c55bfd86b95f74195113ffcfd1c30c, type: 3}
@@ -2542,7 +2547,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6329093984931089985, guid: dcf6b0d704939c647b2c3e3ce23a183b, type: 3}
   m_PrefabInstance: {fileID: 1307036579}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 37979762}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8a537120fe0e2744182d9a956fea0161, type: 3}
@@ -2558,7 +2563,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4228286972384368741, guid: dcf6b0d704939c647b2c3e3ce23a183b, type: 3}
   m_PrefabInstance: {fileID: 1307036579}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 37979762}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8c0862a8d864898459829eae70effd61, type: 3}
@@ -2569,6 +2574,20 @@ AudioSource:
   m_CorrespondingSourceObject: {fileID: 5521281100981275346, guid: dcf6b0d704939c647b2c3e3ce23a183b, type: 3}
   m_PrefabInstance: {fileID: 1307036579}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1304246256
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 37979762}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf19fc094307688459d104f15be4f728, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GrassHopper
+  _speed: 15
+  _time: 0.25
 --- !u!1001 &1307036579
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2614,9 +2633,17 @@ PrefabInstance:
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 4228286972384368741, guid: dcf6b0d704939c647b2c3e3ce23a183b, type: 3}
+      propertyPath: _subWeapons.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4228286972384368741, guid: dcf6b0d704939c647b2c3e3ce23a183b, type: 3}
       propertyPath: _mainWeapons.Array.size
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 4228286972384368741, guid: dcf6b0d704939c647b2c3e3ce23a183b, type: 3}
+      propertyPath: '_subWeapons.Array.data[1]'
+      value: 
+      objectReference: {fileID: 1304246256}
     - target: {fileID: 4228286972384368741, guid: dcf6b0d704939c647b2c3e3ce23a183b, type: 3}
       propertyPath: '_mainWeapons.Array.data[1]'
       value: 
@@ -2625,6 +2652,16 @@ PrefabInstance:
       propertyPath: '_mainWeapons.Array.data[2]'
       value: 
       objectReference: {fileID: 1284718137}
+    - target: {fileID: 5164221290592990406, guid: dcf6b0d704939c647b2c3e3ce23a183b, type: 3}
+      propertyPath: m_WarningMessage
+      value: "\nBinding warning: Some generic clip(s) animate transforms that are
+        already bound by a Humanoid avatar. These transforms can only be changed
+        by Humanoid clips.\n\tTransform 'mixamorig:Hips'\n\tTransform 'mixamorig:LeftHandThumb1'\n\tTransform
+        'mixamorig:Neck'\n\tTransform 'mixamorig:Head'\n\tTransform 'mixamorig:RightFoot'\n\tTransform
+        'mixamorig:LeftLeg'\n\tTransform 'mixamorig:RightShoulder'\n\tTransform 'mixamorig:Spine'\n\tTransform
+        'mixamorig:LeftHandMiddle3'\n\tTransform 'mixamorig:RightForeArm'\n\tand
+        more ...\n\tFrom animation clip 'Jump'"
+      objectReference: {fileID: 0}
     - target: {fileID: 6329093984931089985, guid: dcf6b0d704939c647b2c3e3ce23a183b, type: 3}
       propertyPath: _weaponName
       value: VIPER
@@ -2720,7 +2757,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4008658825569139944, guid: dcf6b0d704939c647b2c3e3ce23a183b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1304246256}
   m_SourcePrefab: {fileID: 100100000, guid: dcf6b0d704939c647b2c3e3ce23a183b, type: 3}
 --- !u!1 &1353375500
 GameObject:
