@@ -4,15 +4,36 @@ using System.Collections;
 
 public class GrassHopper : SubWeponBase
 {
-    [SerializeField] private float _speed = 15f;
-    [SerializeField] private float _time = 0.25f;
-    private PlayerController _player;
+    [Header("Grasshopper")]
+    [SerializeField] private float _jumpSpeed = 12f;
+    [SerializeField] private float _coolTime = 1.5f;
+    [SerializeField] private float _trionCost = 10f;
 
-    void Start()
+    private float _coolTimer;
+
+    private PlayerController _player;
+    private PlayerStatus _playerStatus;
+
+
+    private void Start()
     {
         _player = GetComponent<PlayerController>();
+        _playerStatus = GetComponent<PlayerStatus>();
     }
 
+
+    private void Update()
+    {
+        if (_coolTimer > 0)
+        {
+            _coolTimer -= Time.deltaTime;
+        }
+    }
+
+
+    /// <summary>
+    /// グラスホッパー発動
+    /// </summary>
     public override void OnFire(InputAction.CallbackContext context)
     {
         if (!context.performed)
@@ -20,41 +41,25 @@ public class GrassHopper : SubWeponBase
             return;
         }
 
-        StartCoroutine(Dash());
-    }
-
-    private IEnumerator Dash()
-    {
-        _player.CanMove = false;
-
-        Vector3 forward = _player.CameraTransform.forward;
-        Vector3 right = _player.CameraTransform.right;
-
-        forward.y = 0;
-        right.y = 0;
-
-        forward.Normalize();
-        right.Normalize();
-
-        Vector2 input = _player.MoveInput;
-
-        Vector3 dir = forward * input.y + right * input.x;
-
-        if (dir.sqrMagnitude < 0.01f)
+        // クールタイム中
+        if (_coolTimer > 0)
         {
-            dir = _player.transform.forward;
+            return;
         }
 
-        float timer = 0f;
 
-        while (timer < _time)
+        // トリオン消費
+        if (!_playerStatus.ConsumeTrion(_trionCost))
         {
-            _player.Controller.Move(dir.normalized * _speed * Time.deltaTime);
-
-            timer += Time.deltaTime;
-            yield return null;
+            return;
         }
 
-        _player.CanMove = true;
+
+        // 加速を追加
+        _player.StartGrasshopper(_jumpSpeed);
+
+
+        // クール開始
+        _coolTimer = _coolTime;
     }
 }

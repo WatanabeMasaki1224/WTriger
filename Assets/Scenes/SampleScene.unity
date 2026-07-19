@@ -2586,8 +2586,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf19fc094307688459d104f15be4f728, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GrassHopper
-  _speed: 15
-  _time: 0.25
+  _jumpSpeed: 30
+  _coolTime: 0.8
+  _trionCost: 10
 --- !u!1001 &1307036579
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2627,6 +2628,10 @@ PrefabInstance:
     - target: {fileID: 1858997413441125847, guid: dcf6b0d704939c647b2c3e3ce23a183b, type: 3}
       propertyPath: m_LocalPosition.y
       value: 1.011
+      objectReference: {fileID: 0}
+    - target: {fileID: 2281421509473996849, guid: dcf6b0d704939c647b2c3e3ce23a183b, type: 3}
+      propertyPath: _grasshopperDeceleration
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4008658825569139944, guid: dcf6b0d704939c647b2c3e3ce23a183b, type: 3}
       propertyPath: m_Name

@@ -1,3 +1,4 @@
+using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -17,11 +18,9 @@ public class PlayerController : MonoBehaviour
     float _cameraPitch = 0f;
     private ShooterWeponBase _shooter;
     private WeponManager _weponManager;
-    public CharacterController Controller => _characterController;
-    public Transform CameraTransform => _cameraTransform;
-    public Vector2 MoveInput => _moveInput;
+    private Vector3 _grasshopperVelocity;
+    [SerializeField] private float _grasshopperDeceleration = 20f;
 
-    public bool CanMove { get; set; } = true;
 
     private void Start()
     {
@@ -65,12 +64,7 @@ public class PlayerController : MonoBehaviour
     }
 
     void Move()
-    {
-        if (!CanMove)
-        {
-            return;
-        }
-
+    { 
         // 攻撃中は移動できない
         if (_weponManager.IsShooting)
         {
@@ -84,17 +78,34 @@ public class PlayerController : MonoBehaviour
         right.y = 0f;
         forward.Normalize();
         right.Normalize();
-        Vector3 move =forward * _moveInput.y + right * _moveInput.x;
-        _characterController.Move(move * _moveSpeed * Time.deltaTime);
+        Vector3 move = forward * _moveInput.y + right * _moveInput.x;
+       
 
-        if(_characterController.isGrounded && _verticalVelocity < 0)
+        // 重力
+        if (_characterController.isGrounded && _verticalVelocity < 0)
         {
             _verticalVelocity = -2f;
         }
 
-        // 重力を適用
         _verticalVelocity += _gravity * Time.deltaTime;
-        _characterController.Move(Vector3.up * _verticalVelocity * Time.deltaTime);
+
+
+        // 通常移動 + グラスホッパー + 重力
+        Vector3 velocity = move * _moveSpeed
+                          + _grasshopperVelocity
+                          + Vector3.up * _verticalVelocity;
+
+
+        _characterController.Move(velocity * Time.deltaTime);
+
+
+        // グラスホッパーの勢いを減衰
+        _grasshopperVelocity = Vector3.MoveTowards(
+            _grasshopperVelocity,
+            Vector3.zero,
+            _grasshopperDeceleration * Time.deltaTime
+        );
+
         // アニメーションへ移動情報を渡す
         float speed = _moveInput.magnitude;
         _animator.SetFloat("Speed", speed);
@@ -118,4 +129,35 @@ public class PlayerController : MonoBehaviour
 
         _cameraTransform.localRotation = Quaternion.Euler(_cameraPitch, 0, 0);
     }
+
+    public void StartGrasshopper(float jumpSpeed)
+    {
+        Vector3 forward = _cameraTransform.forward;
+        Vector3 right = _cameraTransform.right;
+        // 上下を無視して水平方向だけ取得
+        forward.y = 0f;
+        right.y = 0f;
+        forward.Normalize();
+        right.Normalize();
+
+        Vector3 move = forward * _moveInput.y + right * _moveInput.x;
+
+
+        Vector3 direction;
+
+        // 入力なし → 真上
+        if (move.sqrMagnitude < 0.01f)
+        {
+            direction = Vector3.up;
+        }
+        // 入力あり → 斜め上
+        else
+        {
+            direction = (move.normalized + Vector3.up).normalized;
+        }
+
+
+        _grasshopperVelocity = direction * jumpSpeed;
+    }
+
 }
