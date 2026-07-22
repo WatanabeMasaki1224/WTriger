@@ -92,7 +92,6 @@ public class EnemyBoss : EnemyBase
         Move();
         UpdateCooldown();
         UpdateLockOnMarker();
-        Debug.Log(_state);
     }
 
     /// <summary>

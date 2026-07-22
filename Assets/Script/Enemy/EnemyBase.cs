@@ -46,8 +46,6 @@ public class EnemyBase : MonoBehaviour
         _hp -= damage;
         _audioSource.PlayOneShot(_hitSE);
 
-        Debug.Log($"EnemyDmage:{damage} ");
-
         if (_hp <= 0)
         {
             _isDead = true;

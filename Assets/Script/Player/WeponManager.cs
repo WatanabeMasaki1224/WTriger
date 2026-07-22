@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 public class WeponManager : MonoBehaviour
 {
     [Header("Main Weapon")]
-    [SerializeField] private ShooterWeponBase[] _mainWeapons;
+    [SerializeField] private MainWeponBase[] _mainWeapons;
 
     [Header("Sub Weapon")]
     [SerializeField] private SubWeponBase[] _subWeapons;
@@ -13,7 +13,7 @@ public class WeponManager : MonoBehaviour
     private int _mainIndex;
     private int _subIndex;
     public static event Action OnMainWeponChanged;
-    public ShooterWeponBase[] MainWeapons => _mainWeapons;
+    public MainWeponBase[] MainWeapons => _mainWeapons;
     public int MainIndex => _mainIndex;
 
     /// <summary>

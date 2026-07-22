@@ -3,7 +3,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class ShooterWeponBase : MonoBehaviour
+public class ShooterWeponBase : MainWeponBase
 {
     [Header("ŽQl")]
     [SerializeField] protected Transform _firePoint;
@@ -24,12 +24,9 @@ public class ShooterWeponBase : MonoBehaviour
     [SerializeField] private AudioClip _bigCubeSE;
     [SerializeField] private AudioClip _shotSE;
 
-    [SerializeField] private string _weaponName;
-    public string WeaponName => _weaponName;
+    
 
     protected PlayerStatus _playerStatus;
-    protected bool _isShooting;
-    public bool IsShooting => _isShooting;
     protected Animator _animator;
 
     public static event Action OnPlayerShot;
@@ -44,7 +41,7 @@ public class ShooterWeponBase : MonoBehaviour
     /// ”­ŽË“ü—Í‚ðŽó‚¯Žæ‚é
     /// </summary>
     /// <param name="context"></param>
-    public void OnFire(InputAction.CallbackContext context)
+    public override void OnFire(InputAction.CallbackContext context)
     {
         if (_isShooting)
         {
