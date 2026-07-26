@@ -4,7 +4,6 @@ using UnityEngine;
 public class EnemyAsteroid : EnemyBase
 {
     [Header("Move")] 
-    [SerializeField] private float _moveSpeed = 3f;
     [SerializeField] private float _stopDistance = 5f;
     [Header("Attack")]
     [SerializeField] private GameObject _bulletPrefab;
@@ -45,7 +44,7 @@ public class EnemyAsteroid : EnemyBase
     /// <summary>
     /// 攻撃のクールタイムがあけたらFireをよび攻撃
     /// </summary>
-    private void Attack()
+    protected override void Attack()
     {
         if(_player == null)
         {

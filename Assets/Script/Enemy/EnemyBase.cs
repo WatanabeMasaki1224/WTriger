@@ -15,6 +15,20 @@ public class EnemyBase : MonoBehaviour
     [SerializeField] private GameObject _bailoutPrefab;
     [SerializeField] private GameObject _deadEffectPrefab;
     [SerializeField] private float _bailoutDelay = 0.4f;
+    [Header("Move")]
+    [SerializeField] protected float _moveSpeed = 3f;
+
+    [Header("Attack")]
+    [SerializeField] protected float _attackInterval = 2f;
+    [Header("RedBullet")]
+    [SerializeField] private float _redBulletMoveRate = 0.5f;      // ˆÚ“®‘¬“x”{—¦
+    [SerializeField] private float _redBulletAttackRate = 2f;      // UŒ‚ŠÔŠu”{—¦
+    [SerializeField] private float _redBulletDuration = 5f;
+
+    protected float _defaultMoveSpeed;
+    protected float _defaultAttackInterval;
+
+    private Coroutine _redBulletCoroutine;
 
     private bool _isDead;
     public float HP => _hp;
@@ -24,6 +38,9 @@ public class EnemyBase : MonoBehaviour
     {
         _maxHP = _hp;
         _player = GameObject.FindGameObjectWithTag("Player").transform;
+        _defaultMoveSpeed = _moveSpeed;
+        _defaultAttackInterval = _attackInterval;
+
     }
 
     protected virtual void Update()
@@ -34,6 +51,34 @@ public class EnemyBase : MonoBehaviour
     protected virtual void Move()
     {
 
+    }
+
+    protected virtual void Attack()
+    {
+
+    }
+
+    public virtual void ApplyRedBullet()
+    {
+        if (_redBulletCoroutine != null)
+        {
+            StopCoroutine(_redBulletCoroutine);
+        }
+
+        _redBulletCoroutine = StartCoroutine(RedBulletRoutine());
+    }
+
+    private IEnumerator RedBulletRoutine()
+    {
+        _moveSpeed = _defaultMoveSpeed * _redBulletMoveRate;
+        _attackInterval = _defaultAttackInterval * _redBulletAttackRate;
+
+        yield return new WaitForSeconds(_redBulletDuration);
+
+        _moveSpeed = _defaultMoveSpeed;
+        _attackInterval = _defaultAttackInterval;
+
+        _redBulletCoroutine = null;
     }
 
     public virtual void TakeDamage(float damage)

@@ -4,7 +4,6 @@ using UnityEngine;
 public class EnemyShield : EnemyBase
 {
     [Header("Move")]
-    [SerializeField] private float _moveSpeed = 3f;
     [SerializeField] private float _minDistance = 5f;  
     [SerializeField] private float _maxDistance = 10f;
     [Header("Shield")]

@@ -2423,6 +2423,74 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1169231003}
   m_CullTransparentMesh: 1
+--- !u!1 &1216717434
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1216717437}
+  - component: {fileID: 1216717435}
+  - component: {fileID: 1216717436}
+  m_Layer: 7
+  m_Name: kogetuHitBox
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1216717435
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1216717434}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e2f714babab94a46b87afb5e90eb250, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::KogetuHitBox
+  _hitBox: {fileID: 1216717436}
+  _damage: 20
+--- !u!65 &1216717436
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1216717434}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!4 &1216717437
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1216717434}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.98, z: 0.97}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1304246264}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1254499595
 GameObject:
   m_ObjectHideFlags: 0
@@ -2589,6 +2657,27 @@ MonoBehaviour:
   _jumpSpeed: 30
   _coolTime: 0.8
   _trionCost: 10
+--- !u!4 &1304246264 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8750249490425807783, guid: dcf6b0d704939c647b2c3e3ce23a183b, type: 3}
+  m_PrefabInstance: {fileID: 1307036579}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1304246265
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 37979762}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4335c409c4389e6438acf255c4d50ec5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Kogetu
+  _weaponName: 
+  _attackTime: 0.2
+  _coolTime: 0.5
+  _hitBox: {fileID: 1216717435}
 --- !u!1001 &1307036579
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2643,7 +2732,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4228286972384368741, guid: dcf6b0d704939c647b2c3e3ce23a183b, type: 3}
       propertyPath: _mainWeapons.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4228286972384368741, guid: dcf6b0d704939c647b2c3e3ce23a183b, type: 3}
       propertyPath: '_subWeapons.Array.data[1]'
@@ -2657,6 +2746,10 @@ PrefabInstance:
       propertyPath: '_mainWeapons.Array.data[2]'
       value: 
       objectReference: {fileID: 1284718137}
+    - target: {fileID: 4228286972384368741, guid: dcf6b0d704939c647b2c3e3ce23a183b, type: 3}
+      propertyPath: '_mainWeapons.Array.data[3]'
+      value: 
+      objectReference: {fileID: 1304246265}
     - target: {fileID: 5164221290592990406, guid: dcf6b0d704939c647b2c3e3ce23a183b, type: 3}
       propertyPath: m_WarningMessage
       value: "\nBinding warning: Some generic clip(s) animate transforms that are
@@ -2761,11 +2854,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 8750249490425807783, guid: dcf6b0d704939c647b2c3e3ce23a183b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1216717437}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 4008658825569139944, guid: dcf6b0d704939c647b2c3e3ce23a183b, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1304246256}
+    - targetCorrespondingSourceObject: {fileID: 4008658825569139944, guid: dcf6b0d704939c647b2c3e3ce23a183b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1304246265}
   m_SourcePrefab: {fileID: 100100000, guid: dcf6b0d704939c647b2c3e3ce23a183b, type: 3}
 --- !u!1 &1353375500
 GameObject:

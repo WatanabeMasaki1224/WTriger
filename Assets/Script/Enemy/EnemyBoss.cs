@@ -15,7 +15,6 @@ public class EnemyBoss : EnemyBase
     }
 
     [Header("Move")]
-    [SerializeField] private float _moveSpeed = 3f;
     [SerializeField] private float _detectRange = 30f;
     [SerializeField] private float _moveDistance = 10f;          //èâä˙à íuÇ©ÇÁìÆÇØÇÈãóó£
     [SerializeField] private float _returnTime = 3f;         //ñﬂÇËénÇﬂÇÈÇ‹Ç≈ÇÃéûä‘
@@ -24,7 +23,6 @@ public class EnemyBoss : EnemyBase
     [SerializeField] private HoundProjectile _houndPrefab;
     [SerializeField] private ViperProjectile _viperPrefab;
     [SerializeField] private Transform _firePoint;
-    [SerializeField] private float _attackInterval = 2f;
     [Header("Sheld")]
     [SerializeField] private GameObject _shieldPrefab;
     [SerializeField] private Transform _shieldPoint;
@@ -37,7 +35,7 @@ public class EnemyBoss : EnemyBase
     [Header("Distance")]
     [SerializeField] private float _attackRange = 20f;
     [SerializeField] private float _phase2Distance = 10f;
-
+  
     private Transform _aimPoint;
 
     private float _attackTimer;
@@ -54,19 +52,19 @@ public class EnemyBoss : EnemyBase
     private float _shieldTimer;
     private float _cooldownTimer;
     private bool _isAttacking;
+    
 
 
     protected override void Start()
     {
+        base.Start();
         _player = GameObject.FindGameObjectWithTag("Player").transform;
         _aimPoint = _player.Find("EnemyAimPoint");
         _startPosition = transform.position;
         _state = BossState.idle;
         _characterController = GetComponent<CharacterController>();
-        _maxHP = _hp;
         ShooterWeponBase.OnPlayerShot += OnPlayerShot;
         _animator = GetComponent<Animator>();
-        _player = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
     protected override void Update()
@@ -219,7 +217,7 @@ public class EnemyBoss : EnemyBase
     /// <summary>
     /// çUåÇ
     /// </summary>
-    private void Attack()
+    protected override void Attack()
     {
         if (_state != BossState.Attack)
         {
